@@ -1,0 +1,8 @@
+FROM python:latest
+
+RUN pip install websockets
+
+COPY /bin/display /bin/display
+COPY /var/message.dat /var/message.dat
+
+CMD ["/bin/display"]

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Display</title>
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+
+    <script>
+      var ws;
+      var wsManualTimeout;
+      var recentMessageData = "";
+
+      function startWebsocket() {
+        ws = new WebSocket("wss://display.jimcoggeshall.com/ws");
+        wsManualTimeout = setTimeout(() => restartWebsocket(ws), 5000);
+        ws.onmessage = function(event) {
+          var m = event.data;
+          if (recentMessageData != m) {
+            recentMessageData = m;
+            fromWebsocket(m);
+          }
+          resetTimeout();
+        };
+      }
+      
+      function resetTimeout() {
+        clearTimeout(wsManualTimeout);
+        wsManualTimeout = setTimeout(() => restartWebsocket(), 5000);
+      }
+      
+      function restartWebsocket() {
+        ws.close();
+        startWebsocket();
+      }
+
+      function fromWebsocket(m) {
+        document.body.innerHTML = m;
+        Array.from(document.body.querySelectorAll("script")).forEach(oldScript => {
+          const newScript = document.createElement("script");
+          Array.from(oldScript.attributes)
+            .forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+      }
+    
+      function recentFromWebsocket() {
+        fromWebsocket(recentMessageData);
+      }
+      window.addEventListener("resize", recentFromWebsocket);
+      window.addEventListener("orientationchange", recentFromWebsocket);
+
+      startWebsocket();
+    </script>
+
+</html>

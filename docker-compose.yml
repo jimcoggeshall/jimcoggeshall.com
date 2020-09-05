@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+    svc-caddy:
+        restart: unless-stopped
+        image: wexec-caddy:latest
+        build:
+            context: .
+            dockerfile: Dockerfile.caddy
+        volumes: 
+            - type: bind
+              source: ./etc/caddy
+              target: /etc/caddy
+            - type: bind
+              source: ./var/www
+              target: /var/www
+            - type: bind
+              source: ./var/data
+              target: /var/data
+        network_mode: host
+
+    svc-ws:
+        restart: unless-stopped
+        image: wexec-ws:latest
+        build:
+            context: .
+            dockerfile: Dockerfile.ws
+        network_mode: host
+
+    svc-timer:
+        restart: unless-stopped
+        image: wexec-timer:latest
+        build:
+            context: .
+            dockerfile: Dockerfile.timer
+        network_mode: host
+
+    svc-news:
+        restart: unless-stopped
+        image: wexec-news:latest
+        build:
+            context: .
+            dockerfile: Dockerfile.news
+        network_mode: host
+
+    svc-broadcast:
+        restart: unless-stopped
+        image: wexec-broadcast:latest
+        build:
+            context: .
+            dockerfile: Dockerfile.broadcast
+        network_mode: host
+        volumes: 
+            - type: bind
+              source: ./var/broadcast
+              target: /var/broadcast

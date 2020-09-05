@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta http-equiv="refresh" content="300">
+    <title>Timer</title>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+      .button-container {
+        display: flex;
+        margin: 100px;
+      }
+      button {
+        padding: 20px 20px;
+        margin: 10px 10px 10px 10px;
+        font-size: 24px;
+      }
+      button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+      button:active {
+        box-shadow: 0;
+        transform: translateY(4px);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="flex-container">
+    <button data-mpayload="clearTimer">Clear Timer</button>
+    <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
+    <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
+  </div>
+  <div class="flex-container">
+    <button data-mpayload="startTimerEndsAt" data-time="60">1 minute</button>
+    <button data-mpayload="startTimerEndsAt" data-time="120">2 minutes</button>
+    <button data-mpayload="startTimerEndsAt" data-time="300">5 minutes</button>
+    <button data-mpayload="startTimerEndsAt" data-time="600">10 minutes</button>
+    <button data-mpayload="startTimerEndsAt" data-time="900">15 minutes</button>
+    <button data-mpayload="startTimerEndsAt" data-time="1800">30 minutes</button>
+    <button data-mpayload="startTimerEndsAt" data-time="2700">45 minutes</button>
+  </div>
+  <div class="flex-container">
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="60">Add 1 minute</button>
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="120">Add 2 minutes</button>
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="180">Add 3 minutes</button>
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="300">Add 5 minutes</button>
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="600">Add 10 minutes</button>
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="900">Add 15 minutes</button>
+    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="1800">Add 30 minutes</button>
+  </div>
+
+  <script>
+
+
+    var ws;
+    var wsManualTimeout;
+    var recentMessageData = {
+      action: "noop"
+    };
+    var endTimeInSeconds = 0;
+    
+    var warningBellsEnabled = true;
+    const bellsButtons = document.querySelectorAll("[data-bpayload]");
+    
+    function bellsMessage() {
+      var bellsAction = this.dataset.bpayload;
+      var msg = recentMessageData;
+      msg.bellsAction = bellsAction;
+      ws.send(JSON.stringify(msg));
+    }
+    
+    const messageButtons = document.querySelectorAll("[data-mpayload]");
+
+    function sendMessage() {
+      var nowSeconds = Math.floor(Date.now()/1000);
+      if (endTimeInSeconds <= nowSeconds) {
+        endTimeInSeconds = nowSeconds;
+      }
+      var action = this.dataset.mpayload;
+      var msg = {
+        action: action
+      }
+      if (action === "extendTimerNowEndsAt") {
+        var addSeconds = parseInt(this.dataset.timeadd);
+        var endTimeInSecondsTarget = endTimeInSeconds + addSeconds;
+        var endTimeInMinutesTarget = Math.floor(endTimeInSecondsTarget/60);
+        endTimeInSeconds = endTimeInMinutesTarget*60;
+        msg.endTime = endTimeInSeconds;
+        var bellsAction = warningBellsEnabled ? "enableWarningBells" : "disableWarningBells";
+        msg.bellsAction = bellsAction;
+        enableBellsButtons();
+      }
+      if (action === "startTimerEndsAt") {
+        var seconds = parseInt(this.dataset.time);
+        var now = Math.floor(Date.now()/1000);
+        endTimeInSeconds = now + seconds;
+        msg.endTime = endTimeInSeconds;
+        var bellsAction = warningBellsEnabled ? "enableWarningBells" : "disableWarningBells";
+        msg.bellsAction = bellsAction;
+        enableBellsButtons();
+      }
+      ws.send(JSON.stringify(msg));
+    }
+
+    messageButtons.forEach(button => {
+      button.addEventListener("click", sendMessage);
+    });
+
+
+    function startWebsocket() {
+      ws = new WebSocket("wss://display.jimcoggeshall.com/timer/ws");
+      wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
+      recentFromWebsocket();
+      ws.onmessage = function(event) {
+        var m = JSON.parse(event.data);
+        if (recentMessageData != m) {
+          recentMessageData = m;
+          fromWebsocket(m);
+        }
+        resetTimeout();
+      };
+    }
+    
+    function resetTimeout() {
+      clearTimeout(wsManualTimeout);
+      wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
+    }
+    
+    function restartWebsocket() {
+      ws.close();
+      startWebsocket();
+    }
+    
+    function enableBellsButtons() {
+      bellsButtons.forEach(button => {
+        button.disabled = false;
+        button.addEventListener("click", bellsMessage);
+      });
+    }
+    
+    function disableBellsButtons() {
+      bellsButtons.forEach(button => {
+        button.removeEventListener("click", bellsMessage);
+        button.disabled = true;
+      });
+    }
+
+    function fromWebsocket(parsed) {
+      var action = parsed.action;
+      if (action === "startTimerEndsAt") {
+        endTimeInSeconds = parseInt(parsed.endTime);
+        var bellsAction = parsed.bellsAction;
+        if (bellsAction === "disableWarningBells") {
+          warningBellsEnabled = false;
+        } else if (bellsAction === "enableWarningBells") {
+          warningBellsEnabled = true;
+        }
+        enableBellsButtons();
+      } else if (action === "extendTimerNowEndsAt") {
+        endTimeInSeconds = parseInt(parsed.endTime);
+        if (bellsAction === "disableWarningBells") {
+          warningBellsEnabled = false;
+        } else if (bellsAction === "enableWarningBells") {
+          warningBellsEnabled = true;
+        }
+        enableBellsButtons();
+      } else if (action === "clearTimer") {
+        endTimeInSeconds = 0;
+        warningBellsEnabled = true;
+        disableBellsButtons();
+      } else if (action === "noop") {
+        () => {};
+      } else {
+        console.log("Unrecognized message: " + JSON.stringify(parsed));
+      }
+    }
+  
+    function recentFromWebsocket() {
+      fromWebsocket(recentMessageData);
+    }
+
+    startWebsocket();
+  </script>
+</body>
+
+</html>

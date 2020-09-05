@@ -1,0 +1,7 @@
+FROM python:latest
+
+RUN pip install websockets
+
+COPY /sbin/broadcast /sbin/broadcast
+
+CMD ["/sbin/broadcast"]

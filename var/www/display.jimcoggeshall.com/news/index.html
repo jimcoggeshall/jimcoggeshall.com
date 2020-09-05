@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Broadcast</title>
+    <link rel="icon" href="favicon.ico" />
+    <body style="background-color:#000000; margin:0px; padding:0px">
+    <style>
+      * { 
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: rgba(255,255,255,0);
+      }
+      .inner-center {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: normal;
+       	display: inline;
+        justify-content: center;
+        text-align: justify;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        padding: 0vh 5vw 0vh 5vw;
+        margin: 0px;
+        border: 0px;
+      }
+      .outer-center {
+        color: white;
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer-center" id="outer">
+      <div class="inner-center" id="inner">
+        <p id="item-title" style="text-align: left">
+        <br>
+        <p id="item-description">
+      </div>
+    </div>
+    <script>
+
+      function removeTags(ins) {
+        if ((ins === null) || (ins === ""))
+          return false;
+        else
+          ins = ins.toString();
+        return ins.replace( /(<([^>]+)>)/ig, "");
+      }
+
+      var ws;
+      var wsManualTimeout;
+      
+      function startWebsocket() {
+        ws = new WebSocket("wss://display.jimcoggeshall.com/news/ws");
+        wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
+        ws.onmessage = function(event) {
+          var m = JSON.parse(event.data);
+          var title = removeTags(m.Title);
+          var description = removeTags(m.Description);
+          renderItem(title, description);
+          resetTimeout();
+        };
+      }
+      
+      function resetTimeout() {
+        clearTimeout(wsManualTimeout);
+        wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
+      }
+      
+      function restartWebsocket() {
+        ws.close();
+        startWebsocket();
+      }
+      
+      function renderItem(title, description) {
+        document.getElementById("item-title").textContent = title;
+        document.getElementById("item-title").style.fontSize = "calc(5em + 2vw)";
+        document.getElementById("item-description").textContent = description;
+        document.getElementById("item-description").style.fontSize = "calc(3em + 1vw)";
+        fixLayout();
+      }
+
+      function render(m) {
+        document.getElementById("item-title").style.fontSize = "calc(5em + 2vw)";
+        document.getElementById("item-description").style.fontSize = "calc(3em + 1vw)";
+        document.getElementById("inner").style.lineHeight = "1.1";
+        document.getElementById("inner").innerHTML = m;
+        fitVertical(m);
+      }
+
+      function fitVertical(m) {
+        while (document.getElementById("inner").scrollHeight > window.innerHeight) {
+          let style = window.getComputedStyle(document.getElementById("inner"), null);
+          let cfs = style.getPropertyValue("font-size");
+          document.getElementById("inner").style.fontSize = 0.99*cfs.replace("px", "") + "px";
+          document.getElementById("inner").innerHTML = m;
+        }
+      }
+
+      function fixLayout() {
+        render(document.getElementById("inner").innerHTML);
+      }
+      window.addEventListener("resize", fixLayout);
+      
+      startWebsocket();
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,8 @@
+FROM python:latest
+
+RUN pip install websockets feedparser
+
+COPY /sbin/news /sbin/news
+COPY /etc/news/rss.conf /etc/news/
+
+CMD ["/sbin/news"]

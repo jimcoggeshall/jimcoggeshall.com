@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Display</title>
+    <link rel="icon" href="/favicon.ico" />
+    <body style="background-color:#000000; margin:0px; padding:0px">
+    <style>
+      * { 
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: rgba(255,255,255,0);
+      }
+      .inner {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+       	display: inline;
+        justify-content: center;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        padding: 0vh 5vw 0vh 5vw;
+        margin: 0px;
+        border: 0px;
+      }
+      .outer {
+        color: white;
+        height: 100vh;
+        width: 100vw;
+      }
+      .date {
+        font-size: 5vw;
+      }
+      .clock {
+        font-size: 12vw;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum";
+        font-kerning: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="outer">
+      <div class="inner" id="inner">
+        <p class="date" id="thedate"></p>
+        <p class="clock" id="thetime"></p>
+      </div>
+    </div>  
+
+    <script>
+
+  var fmtOptions = {   
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  setInterval(() => {
+    var ts = new Date();
+    var thedate = ts.toLocaleString("en-US", fmtOptions);
+    var thetime = ts.toLocaleTimeString();
+    document.getElementById("thedate").textContent = thedate;
+    document.getElementById("thetime").textContent = thetime;
+    try {
+      fixLayout();
+    } catch (err) {
+      () => {};
+    }
+  }, 1000);
+
+  function render(m) {
+    document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
+    document.getElementById("inner").style.lineHeight = "120%";
+    document.getElementById("inner").innerHTML = m;
+    fitVertical(m);
+  }
+
+  function fitVertical(m) {
+    while (document.getElementById("inner").scrollHeight > window.innerHeight) {
+      let style = window.getComputedStyle(document.getElementById("inner"), null);
+      let cfs = style.getPropertyValue("font-size");
+      document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
+      document.getElementById("inner").innerHTML = m;
+    }
+  }
+
+  function fixLayout() {
+    render(document.getElementById("inner").innerHTML);
+  }
+
+    </script>
+  </body>
+
+</html>
