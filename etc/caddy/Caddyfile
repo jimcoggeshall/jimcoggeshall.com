@@ -1,3 +1,16 @@
+jimcoggeshall.com {
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        Content-Security-Policy "default-src * wss: blob: data: 'unsafe-inline' 'unsafe-eval'"
+        -Server
+    }
+    route {
+        file_server {
+            root /var/www/jimcoggeshall.com
+        }
+    }
+}
+
 display.jimcoggeshall.com {
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
