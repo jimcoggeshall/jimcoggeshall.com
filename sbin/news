@@ -20,7 +20,7 @@ class Messenger:
         messages = []
         for feed in self._feeds:
             for e in feed["entries"]:
-                if e.get("author", "") != "The New York Times" and len(e["description"]) > 10:
+                if e.get("author", "") != "The New York Times" and len(e["description"]) > 20:
                     messages.append(
                         json.dumps( 
                             {"Title": e["title"], "Description": e["description"]},
