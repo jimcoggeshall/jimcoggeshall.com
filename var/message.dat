@@ -29,7 +29,7 @@ iframe {
   align-content: space-evenly;
   align-items: space-evenly;
   text-align: center;
-  padding: 0;
+  padding: 1px;
 }
 .grid-clock {
   grid-column-start: 1; 
@@ -61,7 +61,7 @@ iframe {
     align-content: space-evenly;
     align-items: space-evenly;
     text-align: center;
-    padding: 0;
+    padding: 1px;
   }
   .grid-clock {
     grid-column-start: 1; 
@@ -100,9 +100,9 @@ iframe {
   width: 90%;
   height: 90%;
   transform: translate(0%, 0%);
-  padding: 1px;
-  margin: 0px;
-  border: 0px;
+  padding: 0;
+  margin: 0;
+  border: 0;
   overflow: hidden;
 }
 </style>
