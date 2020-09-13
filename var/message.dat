@@ -108,7 +108,7 @@ iframe {
 </style>
 <div class="outer" id="outer">
   <div class="middle" id="middle">
-    <div class="display-grid" style="height: 100%; width: 100%">
+    <div class="display-grid">
       <div class="grid-item grid-clock"> 
         <iframe src="/clock" allow="autoplay" /></iframe>
       </div>
