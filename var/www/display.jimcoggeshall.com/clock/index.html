@@ -79,13 +79,10 @@
   }, 500);
 
   function render(m) {
-    document.getElementById("inner").style.width = "90vw";
     document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
     document.getElementById("inner").style.lineHeight = "110%";
     document.getElementById("inner").innerHTML = m;
     fitVertical(m);
-    document.getElementById("inner").style.width = "min-content";
-    document.getElementById("inner").innerHTML = m;
   }
 
   function fitVertical(m) {
