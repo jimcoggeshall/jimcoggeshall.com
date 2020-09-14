@@ -100,7 +100,7 @@ iframe {
   width: 90%;
   height: 90%;
   transform: translate(0%, 0%);
-  padding: 1%;
+  padding: 0;
   margin: 1%;
   border: 1px;
   overflow: hidden;
