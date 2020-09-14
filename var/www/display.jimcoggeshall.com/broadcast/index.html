@@ -101,6 +101,7 @@
         document.getElementById("inner").style.lineHeight = "120%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
+        fitHorizontal(m);
       }
 
       function fitVertical(m) {
@@ -110,6 +111,22 @@
           document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
           document.getElementById("inner").innerHTML = m;
         }
+      }
+
+      function fitHorizontal(m) {
+        var origHeight = document.getElementById("inner").style.height;
+        var origWidth = document.getElementById("inner").style.width;
+        var prevWidth = origWidth;
+        while (document.getElementById("inner").style.height == origHeight) {
+          let currentWidth = document.getElementById("inner").style.width;
+          document.getElementById("inner").style.width = 0.8*currentWidth.replace("px", "") + "px";
+          document.getElementById("inner").innerHTML = m;
+          if (document.getElementById("inner").clientHeight == origHeight) {
+            prevWidth = document.getElementById("inner").style.width;
+          }
+        }
+        document.getElementById("inner").style.width = prevWidth;
+        document.getElementById("inner").style.heigth = origHeight;
       }
 
       function fixLayout() {
