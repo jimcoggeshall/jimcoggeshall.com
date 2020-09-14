@@ -101,7 +101,6 @@
         document.getElementById("inner").style.lineHeight = "120%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
-        fitHorizontal(m);
       }
 
       function fitVertical(m) {
@@ -111,37 +110,6 @@
           document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
           document.getElementById("inner").innerHTML = m;
         }
-      }
-
-      function fitHorizontal(m) {
-        let style = window.getComputedStyle(document.getElementById("inner"), null);
-        let origFontSize = style.getPropertyValue("font-size");
-        let origHeight = style.height;
-        let origWidth = style.width;
-        var currentHeight = origHeight;
-        var prevWidth = origWidth;
-        //do {
-        for (i = 0; i < 2; i++) {
-          let thisStyle = window.getComputedStyle(document.getElementById("inner"), null);
-          let currentWidth = thisStyle.width;
-          document.getElementById("inner").style.width = 0.8*currentWidth.replace("px", "") + "px";
-          document.getElementById("inner").style.height = origHeight;
-          document.getElementById("inner").style.fontSize = origFontSize;
-          document.getElementById("inner").innerHTML = m;
-          let newStyle = window.getComputedStyle(document.getElementById("inner"), null);
-          let newCurrentWidth = newStyle.width;
-          let newCurrentHeight = newStyle.height;
-          if (newCurrentHeight === origHeight) {
-            prevWidth = newStyle.width;
-          }
-          currentHeight = newCurrentHeight;
-        }
-        //} while (false);
-        //} while (currentHeight === origHeight);
-        document.getElementById("inner").style.width = prevWidth;
-        document.getElementById("inner").style.height = origHeight;
-        document.getElementById("inner").style.fontSize = origFontSize;
-        document.getElementById("inner").innerHTML = m;
       }
 
       function fixLayout() {
