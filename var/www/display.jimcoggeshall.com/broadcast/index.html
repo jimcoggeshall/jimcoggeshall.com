@@ -101,7 +101,7 @@
         document.getElementById("inner").style.lineHeight = "120%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
-        //fitHorizontal(m);
+        fitHorizontal(m);
       }
 
       function fitVertical(m) {
@@ -114,19 +114,31 @@
       }
 
       function fitHorizontal(m) {
-        var origHeight = document.getElementById("inner").style.height;
-        var origWidth = document.getElementById("inner").style.width;
+        let style = window.getComputedStyle(document.getElementById("inner"), null);
+        let origFontSize = style.getPropertyValue("font-size");
+        let origHeight = style.height;
+        let origWidth = style.width;
+        var currentHeight = origHeight;
         var prevWidth = origWidth;
-        while (document.getElementById("inner").style.height == origHeight) {
-          let currentWidth = document.getElementById("inner").style.width;
+        do {
+          let thisStyle = window.getComputedStyle(document.getElementById("inner"), null);
+          let currentWidth = thisStyle.width;
           document.getElementById("inner").style.width = 0.8*currentWidth.replace("px", "") + "px";
+          document.getElementById("inner").style.height = origHeight;
+          document.getElementById("inner").style.fontSize = origFontSize;
           document.getElementById("inner").innerHTML = m;
-          if (document.getElementById("inner").clientHeight == origHeight) {
-            prevWidth = document.getElementById("inner").style.width;
+          let newStyle = window.getComputedStyle(document.getElementById("inner"), null);
+          let newCurrentWidth = newStyle.width;
+          let newCurrentHeight = newStyle.height;
+          if (newCurrentHeight === origHeight) {
+            prevWidth = newStyle.width;
           }
-        }
+          currentHeight = newCurrentHeight;
+        } while (currentHeight === origHeight);
         document.getElementById("inner").style.width = prevWidth;
-        document.getElementById("inner").style.heigth = origHeight;
+        document.getElementById("inner").style.height = origHeight;
+        document.getElementById("inner").style.fontSize = origFontSize;
+        document.getElementById("inner").innerHTML = m;
       }
 
       function fixLayout() {
