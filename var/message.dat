@@ -31,7 +31,7 @@ iframe {
   align-items: space-evenly;
   text-align: center;
   padding: 0;
-  margin: 0;
+  margin: 1%;
 }
 .grid-clock {
   grid-column-start: 1; 
