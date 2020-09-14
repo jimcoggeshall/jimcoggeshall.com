@@ -27,8 +27,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 90vw;
-        height: 60vh;
-        padding: 0vh 5vw 0vh 5vw;
+        padding: 10vh 5vw 10vh 5vw;
         margin: 0px;
         border: 0px;
       }
@@ -97,7 +96,7 @@
       }
 
       function render(m) {
-        document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
+        document.getElementById("inner").style.fontSize = "calc(3em + 1vw - 1vh)";
         document.getElementById("inner").style.lineHeight = "120%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
