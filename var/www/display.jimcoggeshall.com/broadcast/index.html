@@ -120,7 +120,8 @@
         let origWidth = style.width;
         var currentHeight = origHeight;
         var prevWidth = origWidth;
-        do {
+        //do {
+        for (i = 0; i < 2; i++) {
           let thisStyle = window.getComputedStyle(document.getElementById("inner"), null);
           let currentWidth = thisStyle.width;
           document.getElementById("inner").style.width = 0.8*currentWidth.replace("px", "") + "px";
@@ -134,7 +135,8 @@
             prevWidth = newStyle.width;
           }
           currentHeight = newCurrentHeight;
-        } while (false);
+        }
+        //} while (false);
         //} while (currentHeight === origHeight);
         document.getElementById("inner").style.width = prevWidth;
         document.getElementById("inner").style.height = origHeight;
