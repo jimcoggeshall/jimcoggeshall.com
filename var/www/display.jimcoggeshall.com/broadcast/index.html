@@ -134,7 +134,8 @@
             prevWidth = newStyle.width;
           }
           currentHeight = newCurrentHeight;
-        } while (currentHeight === origHeight);
+        } while (false);
+        //} while (currentHeight === origHeight);
         document.getElementById("inner").style.width = prevWidth;
         document.getElementById("inner").style.height = origHeight;
         document.getElementById("inner").style.fontSize = origFontSize;
