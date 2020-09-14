@@ -17,10 +17,11 @@ iframe {
   scrolling="no";
   overflow: hidden; 
   pointer-events: none;
+  border: none;
 }
 .display-grid {
   box-sizing: border-box;
-  border: 0;
+  border: none;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 3fr 2fr;
@@ -53,7 +54,7 @@ iframe {
 @media (max-aspect-ratio: 13/12) {
   .display-grid {
     box-sizing: border-box;
-    border: 0;
+    border: none;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
@@ -86,6 +87,8 @@ iframe {
 }
 .grid-item {
   padding: 1px;
+  margin: 1px;
+  border: 1px solid white;
 }
 .outer {
   color: white;
@@ -102,9 +105,9 @@ iframe {
   width: 90%;
   height: 90%;
   transform: translate(-50%, -50%);
-  padding: 0;
-  margin: 0;
-  border: 0;
+  padding: 1%;
+  margin: 1%;
+  border: none;
   overflow: hidden;
 }
 </style>
