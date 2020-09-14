@@ -40,7 +40,7 @@
         font-size: 5vw;
       }
       .clock {
-        font-size: 12vw;
+        font-size: 13vw;
         font-variant-numeric: tabular-nums;
         font-feature-settings: "tnum";
         font-kerning: none;
@@ -76,11 +76,11 @@
     } catch (err) {
       () => {};
     }
-  }, 1000);
+  }, 500);
 
   function render(m) {
     document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
-    document.getElementById("inner").style.lineHeight = "120%";
+    document.getElementById("inner").style.lineHeight = "110%";
     document.getElementById("inner").innerHTML = m;
     fitVertical(m);
   }
