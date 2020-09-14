@@ -30,6 +30,7 @@ iframe {
   align-items: space-evenly;
   text-align: center;
   padding: 1px;
+  margin: 1%;
 }
 .grid-clock {
   grid-column-start: 1; 
@@ -62,6 +63,7 @@ iframe {
     align-items: space-evenly;
     text-align: center;
     padding: 1px;
+    margin: 1%;
   }
   .grid-clock {
     grid-column-start: 1; 
