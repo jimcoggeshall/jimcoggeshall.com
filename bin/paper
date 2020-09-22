@@ -7,7 +7,7 @@ sleep 60
 pushd /
 cp TodaysPaper.pdf TodaysPaper-prev.pdf
 wget -N https://cloud.jimcoggeshall.com/TodaysPaper.pdf
-diff -q TodaysPaper.pdf TodaysPaper-prev.pdf || exit 1
+diff -q TodaysPaper.pdf TodaysPaper-prev.pdf && exit 1
 
 workdir=$(uuidgen)
 
