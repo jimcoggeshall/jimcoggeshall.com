@@ -17,7 +17,7 @@ pushd "$workdir/img"
 pdfseparate /TodaysPaper.pdf TodaysPaper%03d.pdf
 
 find . -name '*.pdf' | while read f; do
-    pdftocairo -png -singlefile -r 150 "$f" "$(basename $f '.pdf')"
+    pdftocairo -png -cropbox -singlefile -r 150 "$f" "$(basename $f '.pdf')"
     rm -f "$f"
 done
 
