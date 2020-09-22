@@ -36,8 +36,8 @@ find img -name '*.png' |\
         printf("\n];\n"); \
     }' > list.js
 
-mv img /var/paper
-mv list.js /var/paper
+mv img /var/www/jimcoggeshall.com/paper
+mv list.js /var/www/jimcoggeshall.com/paper
 
 popd
 
