@@ -49,4 +49,4 @@ popd
 
 rm -rf "$workdir"
 
-sleep 3600
+sleep 60
