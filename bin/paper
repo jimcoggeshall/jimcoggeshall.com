@@ -12,7 +12,7 @@ pdfseparate TodaysPaper.pdf TodaysPaper%03d.pdf
 rm -f TodaysPaper.pdf
 
 find . -name '*.pdf' | while read f; do
-    pdftocairo -png -r 150 "$f" "$(basename $f '.pdf').png"
+    pdftocairo -png -singlefile -r 150 "$f" "$(basename $f '.pdf').png"
     rm -f "$f"
 done
 
