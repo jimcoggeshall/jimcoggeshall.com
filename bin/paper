@@ -1,15 +1,20 @@
 #!/bin/bash
 
-set -ex
+set -x
+
+sleep 60 
+
+pushd /
+cp TodaysPaper.pdf TodaysPaper-prev.pdf
+wget -N https://cloud.jimcoggeshall.com/TodaysPaper.pdf
+diff -q TodaysPaper.pdf TodaysPaper-prev.pdf || exit 1
 
 workdir=$(uuidgen)
 
 mkdir -p "$workdir/img"
 pushd "$workdir/img"
 
-wget https://cloud.jimcoggeshall.com/TodaysPaper.pdf 
-pdfseparate TodaysPaper.pdf TodaysPaper%03d.pdf
-rm -f TodaysPaper.pdf
+pdfseparate /TodaysPaper.pdf TodaysPaper%03d.pdf
 
 find . -name '*.pdf' | while read f; do
     pdftocairo -png -singlefile -r 150 "$f" "$(basename $f '.pdf')"
