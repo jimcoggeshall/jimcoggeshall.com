@@ -1,25 +1,24 @@
 #!/bin/bash
 
-set -x
+set -ex
 
 workdir=$(uuidgen)
-mkdir -p "$workdir"
-pushd "$workdir"
 
-mkdir -p img
-pushd img
+mkdir -p "$workdir/img"
+pushd "$workdir/img"
 
-wget -N https://cloud.jimcoggeshall.com/TodaysPaper.pdf 
+wget https://cloud.jimcoggeshall.com/TodaysPaper.pdf 
 pdfseparate TodaysPaper.pdf TodaysPaper%03d.pdf
 rm -f TodaysPaper.pdf
 
 find . -name '*.pdf' | while read f; do
-    echo "$f"
     pdftocairo -png -r 150 "$f" "$(basename $f '.pdf').png"
     rm -f "$f"
 done
 
 popd
+
+pushd "$workdir"
 
 find img -name '*.png' |\
     sort -n |\
@@ -36,11 +35,14 @@ find img -name '*.png' |\
         printf("\n];\n"); \
     }' > list.js
 
-rm -rf /var/www/jimcoggeshall.com/paper/img
-rm -rf /var/www/jimcoggeshall.com/paper/list.js
+
+
 chmod -R 777 img
 chmod -R 777 list.js
+
+rm -rf /var/www/jimcoggeshall.com/paper/img || :
 mv img /var/www/jimcoggeshall.com/paper
+rm -rf /var/www/jimcoggeshall.com/paper/list.js || :
 mv list.js /var/www/jimcoggeshall.com/paper
 
 popd
