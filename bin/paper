@@ -15,7 +15,7 @@ rm -f TodaysPaper.pdf
 
 find . -name '*.pdf' | while read f; do
     echo "$f"
-    pdftocairo -png -r 600 "$f" "$(basename $f '.pdf').png"
+    pdftocairo -png -r 150 "$f" "$(basename $f '.pdf').png"
     rm -f "$f"
 done
 
@@ -36,6 +36,10 @@ find img -name '*.png' |\
         printf("\n];\n"); \
     }' > list.js
 
+rm -rf /var/www/jimcoggeshall.com/paper/img
+rm -rf /var/www/jimcoggeshall.com/paper/list.js
+chmod -R 777 img
+chmod -R 777 list.js
 mv img /var/www/jimcoggeshall.com/paper
 mv list.js /var/www/jimcoggeshall.com/paper
 
