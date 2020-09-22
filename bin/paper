@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -ex
+
+workdir=$(uuidgen)
+mkdir -p "$workdir"
+pushd "$workdir"
+
+mkdir -p img
+pushd img
+
+wget -N https://cloud.jimcoggeshall.com/TodaysPaper.pdf 
+pdfseparate TodaysPaper.pdf TodaysPaper%03d.pdf
+rm -f TodaysPaper.pdf
+
+find . -name '*.pdf' | while read f; do
+    echo "$f"
+    pdftocairo -png -r 600 "$f" "$(basename $f '.pdf').png"
+    rm -f "$f"
+done
+
+popd
+
+find img -name '*.png' |\
+    sort -n |\
+	   awk 'BEGIN { \
+        printf("var pagesOrig = [\n"); \
+    } \
+    NR == 1 { \
+        printf("  \"%s\"", $0); \
+    } \
+    NR > 1 { \
+        printf(",\n  \"%s\"", $0); \
+    } \
+    END { \
+        printf("\n];\n"); \
+    }' > list.js
+
+mv img /var/paper
+mv list.js /var/paper
+
+popd
+
+rm -rf "$workdir"
