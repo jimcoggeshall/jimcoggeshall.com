@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -x
 
 workdir=$(uuidgen)
 mkdir -p "$workdir"
