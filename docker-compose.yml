@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.7"
 services:
     svc-caddy:
         restart: unless-stopped
@@ -55,11 +55,7 @@ services:
               target: /var/broadcast
 
     svc-paper:
-        restart_policy:
-            condition: any
-            delay: 1h
-            max_attempts: 2
-            window: 1s
+        restart: unless-stopped
         image: wexec-paper:latest
         build:
             context: .
