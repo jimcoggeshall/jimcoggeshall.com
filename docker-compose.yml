@@ -34,6 +34,10 @@ services:
         build:
             context: .
             dockerfile: Dockerfile.timer
+        volumes:
+            - type: bind
+              source: ./var/timer
+              target: /var/timer
         network_mode: host
 
     svc-news:

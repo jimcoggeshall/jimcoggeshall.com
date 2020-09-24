@@ -13,10 +13,18 @@ class Messenger:
         self._lock = lock
         self._cond = asyncio.Condition(lock=self._lock)
         self._connected = set()
-        self._message = '{"action":"noop"}'
-
+        message = '{"action":"noop"}'
+        try:
+            with open("/var/timer/state.json", "r") as f:
+                message = json.dumps(json.load(f), separators=(',', ':'))
+        except:
+            pass
+        self._message = message
+        
     async def update_message(self, new_message):
         self._message = new_message
+        with open("/var/timer/state.json", "w") as f:
+            f.write(json.dumps(new_message))
         async with self._cond:
             self._cond.notify(n=1)
 
