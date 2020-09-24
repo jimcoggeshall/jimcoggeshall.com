@@ -25,7 +25,7 @@ class Messenger:
     async def update_message(self, new_message):
         self._message = new_message
         with open("/var/timer/state.mod.json", "w") as f:
-            f.write(json.dumps(new_message, separators=(",", ":")))
+            f.write(print(json.dumps(new_message, separators=(",", ":"))))
         async with self._cond:
             self._cond.notify(n=1)
 
