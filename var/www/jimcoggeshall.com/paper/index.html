@@ -140,7 +140,7 @@
         var newImage = p.image;
         var newImageSrc = p.source;
         if (newImage.src !== newImageSrc) {
-          setTimeout(() => {newImage.src = newImageSrc}, (i - 1)*2000);
+          setTimeout(() => {newImage.src = newImageSrc}, (i - 1)*2000 + 500);
         }
       });
     }
