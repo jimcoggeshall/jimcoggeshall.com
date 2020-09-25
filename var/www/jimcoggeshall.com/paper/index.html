@@ -158,10 +158,10 @@
       document.getElementById("overlay").style.display = "inline-block";
       var newImage = pages[0].image;
       var newImageSrc = pages[0].source;
+      newImage.addEventListener("load", newPageLoaded, {once: true});
       if (newImage.src !== newImageSrc) {
         newImage.src = newImageSrc;
       }
-      newImage.addEventListener("load", newPageLoaded);
       imageDiv.appendChild(newImage);
       cachePages();
     }
