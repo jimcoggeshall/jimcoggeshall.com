@@ -145,10 +145,10 @@
       while (imageDiv.firstChild) {
         imageDiv.removeChild(imageDiv.firstChild);
       }
-      pages[0].image.src = pages[0].source;
       document.getElementById("overlay").style.display = "inline-block";
       pages[0].addEventListener("load", newPageLoaded);
       image.appendChild(pages[0]);
+      pages[0].image.src = pages[0].source;
     }
 
     function nextImage() {
