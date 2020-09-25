@@ -135,7 +135,7 @@
       }
     });
 
-    setTimeout(() => {
+    function cachePages() {
       pages.forEach((p, i) => {
         var newImage = p.image;
         var newImageSrc = p.source;
@@ -143,7 +143,7 @@
           setTimeout(() => {newImage.src = newImageSrc}, i*1000);
         }
       });
-    }, 5000);
+    }
 
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
@@ -163,11 +163,7 @@
       }
       newImage.addEventListener("load", newPageLoaded);
       imageDiv.appendChild(newImage);
-      var nextImage = pages[1].image;
-      var nextImageSrc = pages[0].source;
-      if (nextImage.src !== nextImageSrc) {
-        nextImage.src = nextImageSrc;
-      }
+      cachePages();
     }
 
     function nextImage() {
