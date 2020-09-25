@@ -118,14 +118,19 @@
     <div id="right">
       <div id="rightArrow" href="#">&#10097;</div>
     </div>
-    <img class="center" id="im">
+    <div id="im"></div>
   </body>
 
   <script src="list.js"></script>
   <script>
 
     var navTimeout;
-    var pages = pagesOrig.slice(0, -1);
+    var pagesSrc = pagesOrig.slice(0, -1);
+    var pages = pagesSrc.map((source) => {
+      var image = new Image();
+      image.classList.add("center");
+      image.src = source;
+    });
 
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
@@ -133,7 +138,11 @@
     }
 
     function newPage() {
-      document.getElementById("im").src = pages[0];
+      var image = document.getElementById("im");
+      while (image.firstChild) {
+        image.removeChild(image.firstChild);
+      }
+      image.appendChild(pages[0]);
       document.getElementById("overlay").style.display = "inline-block";
     }
 
