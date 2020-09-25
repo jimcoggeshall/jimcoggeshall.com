@@ -183,7 +183,6 @@
     newPage();
 
     function handleKeypress(e) {
-      console.log("handleKeypress");
       if (e.defaultPrevented) {
         return;
       }
@@ -204,29 +203,16 @@
     }
 
     document.addEventListener("keydown", handleKeypress);
-    document.getElementById("leftArrow").addEventListener("click", (e) => {
-      console.log("click leftArrow");
-//      prevImage();
-//      e.preventDefault();
-    }, false);
     document.getElementById("left").addEventListener("click", (e) => {
-      console.log("click left");
       prevImage();
       e.preventDefault();
     }, false);
-    document.getElementById("rightArrow").addEventListener("click", (e) => {
-      console.log("click rightArrow");
-//      nextImage();
-//      e.preventDefault();
-    }, false);
     document.getElementById("right").addEventListener("click", (e) => {
-      console.log("click right");
       nextImage();
       e.preventDefault();
     }, false);
 
     function detectSwipe(handleSwipe) {
-      console.log("detectSwipe");
       var navdir = "None";
       var swipedir = "None";
       var startX, startY, distX, distY, elapsedTime, startTime;
@@ -252,7 +238,6 @@
       }, false);
 
       window.addEventListener("touchstart", (e) => {
-        console.log("touchstart");
         var touchobj = e.changedTouches[0];
         navdir = "None";
         swipedir = "None";
@@ -264,7 +249,6 @@
       }, false);
 
       window.addEventListener("touchend", (e) => {
-        console.log("touchend");
         var touchobj = e.changedTouches[0];
         distX = touchobj.pageX - startX;
         distY = touchobj.pageY - startY;
@@ -292,7 +276,6 @@
     }
 
     function handleTap(e) {
-      console.log("handleTap");
       clearTimeout(navTimeout);
       document.getElementById("left").style.display = "block";
       document.getElementById("leftArrow").style.display = "block";
@@ -315,7 +298,6 @@
     });
 
     detectSwipe((swipedir) => {
-      console.log("handleSwipe");
       switch (swipedir) {
         case "Right":
           prevImage();
