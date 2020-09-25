@@ -140,7 +140,7 @@
         var newImage = p.image;
         var newImageSrc = p.source;
         if (newImage.src !== newImageSrc) {
-          newImage.src = newImageSource;
+          newImage.src = newImageSrc;
         }
       }
     }
@@ -161,7 +161,7 @@
       var newImage = pages[0].image;
       var newImageSrc = pages[0].source;
       if (newImage.src !== newImageSrc) {
-        newImage.src = newImageSource;
+        newImage.src = newImageSrc;
       }
       newImage.addEventListener("load", newPageLoaded);
       imageDiv.appendChild(newImage);
