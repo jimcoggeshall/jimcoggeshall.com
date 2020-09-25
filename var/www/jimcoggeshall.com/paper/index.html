@@ -129,7 +129,10 @@
     var pages = pagesSrc.map((source) => {
       var image = new Image();
       image.classList.add("center");
-      image.src = source;
+      return {
+        "source": source,
+        "image": image
+      }
     });
 
     function newPageLoaded() {
@@ -138,12 +141,14 @@
     }
 
     function newPage() {
-      var image = document.getElementById("im");
-      while (image.firstChild) {
-        image.removeChild(image.firstChild);
+      var imageDiv = document.getElementById("im");
+      while (imageDiv.firstChild) {
+        imageDiv.removeChild(imageDiv.firstChild);
       }
-      image.appendChild(pages[0]);
+      pages[0].image.src = pages[0].source;
       document.getElementById("overlay").style.display = "inline-block";
+      pages[0].addEventListener("load", newPageLoaded);
+      image.appendChild(pages[0]);
     }
 
     function nextImage() {
