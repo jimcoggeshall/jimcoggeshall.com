@@ -146,7 +146,6 @@
         imageDiv.removeChild(imageDiv.firstChild);
       }
       document.getElementById("overlay").style.display = "inline-block";
-      pages[0].image.addEventListener("load", newPageLoaded);
       if (pages[0].image.src !== pages[0].source) {
         pages[0].image.src = pages[0].source;
       }
