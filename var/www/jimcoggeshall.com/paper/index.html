@@ -139,9 +139,9 @@
       var newImage = p.image;
       var newImageSrc = p.source;
       if (newImage.src !== newImageSrc) {
-        setTimeout(() => {newImage.src = newImageSrc;}, i*1000);
+        setTimeout(() => {newImage.src = newImageSrc}, i*1000);
       }
-    }
+    });
 
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
