@@ -135,6 +135,18 @@
       }
     });
 
+    function loadPages() {
+      for (p of pages) {
+        var newImage = p.image;
+        var newImageSrc = p.source;
+        if (newImage.src !== newImageSrc) {
+          newImage.src = newImageSource;
+        }
+      }
+    }
+
+    loadPages();
+
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
       window.scrollTo(0, 0);
@@ -146,13 +158,13 @@
         imageDiv.removeChild(imageDiv.firstChild);
       }
       document.getElementById("overlay").style.display = "inline-block";
-      if (pages[0].image.src !== pages[0].source) {
-        pages[0].image.src = pages[0].source;
+      var newImage = pages[0].image;
+      var newImageSrc = pages[0].source;
+      if (newImage.src !== newImageSrc) {
+        newImage.src = newImageSource;
       }
-      imageDiv.appendChild(pages[0].image);
-      if (pages[1].image.src !== pages[1].source) {
-        pages[1].image.src = pages[1].source;
-      }
+      newImage.addEventListener("load", newPageLoaded);
+      imageDiv.appendChild(newImage);
     }
 
     function nextImage() {
@@ -312,7 +324,6 @@
       }
     });
 
-    document.getElementById("im").addEventListener("load", newPageLoaded);
     
     window.addEventListener("mousemove", handleTap);
 
