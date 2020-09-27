@@ -171,14 +171,14 @@
     function nextImage() {
       pages.push(pages.shift());
       if (pages[0].source === firstPageSrc) {
-        window.location.assign(referrer);
+        document.location.replace(referrer);
       }
       newPage();
     }
 
     function prevImage() {
       if (pages[0].source === firstPageSrc) {
-        window.location.assign(referrer);
+        document.location.replace(referrer);
       }
       pages.unshift(pages.pop());
       newPage();
