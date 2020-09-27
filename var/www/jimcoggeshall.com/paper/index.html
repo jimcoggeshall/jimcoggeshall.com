@@ -19,6 +19,37 @@
         margin-left: auto;
         margin-right: auto;
       }
+      #topLeft {
+        position: fixed;
+        display: none;
+        width: 10vmin;
+        height: 10vmin;
+        top: 5vh;
+        left: 5vw;
+        right: 85vw;
+        bottom: 85vh;
+        margin: 0px;
+        padding: 0px;
+        background-color: rgba(255, 255, 255, 0);
+        z-index: 2;
+        cursor: pointer;
+      }
+      #topLeftIcon {
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 50%;
+        font-size: 30vw;
+        line-height: 30vw;
+        color: black;
+        opacity: 0.3;
+        z-index: 3;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+      }
+      #topLeftIcon:hover {
+        opacity: 0.8;
+      }
       #right {
         position: fixed;
         display: none;
@@ -111,6 +142,9 @@
   <body>
     <div id="overlay">
       <div id="text">Loading...</div>
+    </div>
+    <div id="topLeft">
+      <div id="topLeftIcon" href="#">&#10005;</div>
     </div>
     <div id="left">
       <div id="leftArrow" href="#">&#10096;</div>
@@ -206,6 +240,10 @@
       e.preventDefault();
     }
 
+    document.getElementById("topLeft").addEventListener("click", (e) => {
+      document.location.replace(referrer);
+      e.preventDefault();
+    }, false);
     document.addEventListener("keydown", handleKeypress);
     document.getElementById("left").addEventListener("click", (e) => {
       prevImage();
@@ -224,6 +262,14 @@
       var maxDistance = 100;
       var allowedTime = 150;
     
+      document.getElementById("topLeftIcon").addEventListener("touchend", (e) => {
+        navdir = "Close";
+        e.preventDefault();
+      }, false);
+      document.getElementById("topLeft").addEventListener("touchend", (e) => {
+        navdir = "Close";
+        e.preventDefault();
+      }, false);
       document.getElementById("leftArrow").addEventListener("touchend", (e) => {
         navdir = "Left";
         e.preventDefault();
@@ -281,11 +327,15 @@
 
     function handleTap(e) {
       clearTimeout(navTimeout);
+      document.getElementById("topLeft").style.display = "block";
+      document.getElementById("topLeftIcon").style.display = "block";
       document.getElementById("left").style.display = "block";
       document.getElementById("leftArrow").style.display = "block";
       document.getElementById("right").style.display = "block";
       document.getElementById("rightArrow").style.display = "block";
       navTimeout = setTimeout(() => {
+        document.getElementById("topLeft").style.display = "none";
+        document.getElementById("topLeftIcon").style.display = "none";
         document.getElementById("left").style.display = "none";
         document.getElementById("leftArrow").style.display = "none";
         document.getElementById("right").style.display = "none";
@@ -295,6 +345,8 @@
     }
 
     window.addEventListener("scroll", (e) => {
+      document.getElementById("topLeft").style.display = "none";
+      document.getElementById("topLeftIcon").style.display = "none";
       document.getElementById("left").style.display = "none";
       document.getElementById("leftArrow").style.display = "none";
       document.getElementById("right").style.display = "none";
