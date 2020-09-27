@@ -11,7 +11,7 @@ jimcoggeshall.com {
     }
 }
 
-display.jimcoggeshall.com, broadcast.jimcoggeshall.com {
+broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         Content-Security-Policy "default-src * wss: blob: data: 'unsafe-inline' 'unsafe-eval'"
@@ -23,7 +23,7 @@ display.jimcoggeshall.com, broadcast.jimcoggeshall.com {
         reverse_proxy /news/ws* ws://127.0.0.1:8890
         reverse_proxy /broadcast/ws* ws://127.0.0.1:8891
         file_server {
-            root /var/www/display.jimcoggeshall.com
+            root /var/www/broadcast.jimcoggeshall.com
         }
     }
 }
