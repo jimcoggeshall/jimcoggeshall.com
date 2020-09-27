@@ -51,9 +51,11 @@ for doc in sdut lat TodaysPaper; do
     chmod -R 777 front.png
 
     rm -rf /var/www/jimcoggeshall.com/papers/${doc}/img || :
-    mv img /var/www/jimcoggeshall.com/papers/${doc}
     rm -rf /var/www/jimcoggeshall.com/papers/${doc}/list.js || :
-    mv list.js /var/www/jimcoggeshall.com/paper/${doc}
+    rm /var/www/jimcoggeshall.com/papers/${doc}/front.png || :
+    mv img /var/www/jimcoggeshall.com/papers/${doc}
+    mv list.js /var/www/jimcoggeshall.com/papers/${doc}
+    mv front.png /var/www/jimcoggeshall.com/papers/${doc}
 
     popd
 
