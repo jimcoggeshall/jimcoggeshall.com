@@ -355,6 +355,9 @@
 
     detectSwipe((swipedir) => {
       switch (swipedir) {
+        case "Close":
+          document.location.replace(referrer);
+          break;
         case "Right":
           prevImage();
           break;
