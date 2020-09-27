@@ -213,7 +213,7 @@
     }
 
     function startWebsocket() {
-      var hostname = window.location.hostname;
+      var hostname = "broadcast.jimcoggeshall.com";
       ws = new WebSocket("wss://" + hostname + "/timer/ws");
       wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
       recentFromWebsocket();

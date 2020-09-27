@@ -16,7 +16,7 @@
     var recentMessageData = "";
 
     function startWebsocket() {
-      var hostname = window.location.hostname;
+      var hostname = "broadcast.jimcoggeshall.com";
       ws = new WebSocket("wss://" + hostname + "/ws");
       wsManualTimeout = setTimeout(() => restartWebsocket(ws), 5000);
       ws.onmessage = function(event) {
