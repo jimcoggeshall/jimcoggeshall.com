@@ -124,6 +124,7 @@
   <script src="list.js"></script>
   <script>
 
+    const referrer = document.referrer;
     var navTimeout;
     var pagesSrc = pagesOrig.slice(0, -1);
     var pages = pagesSrc.map((source) => {
@@ -170,14 +171,14 @@
     function nextImage() {
       pages.push(pages.shift());
       if (pages[0].source === firstPageSrc) {
-        window.history.back();
+        window.location.assign(referrer);
       }
       newPage();
     }
 
     function prevImage() {
       if (pages[0].source === firstPageSrc) {
-        window.history.back();
+        window.location.assign(referrer);
       }
       pages.unshift(pages.pop());
       newPage();
