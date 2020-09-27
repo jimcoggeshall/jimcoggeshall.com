@@ -4,52 +4,61 @@ set -x
 
 sleep 60 
 
-pushd /
-cp TodaysPaper.pdf TodaysPaper-prev.pdf
-wget -N https://cloud.jimcoggeshall.com/TodaysPaper.pdf
-diff -q TodaysPaper.pdf TodaysPaper-prev.pdf && exit 1
+for doc in sdut lat TodaysPaper; do
+    pushd /
+    cp $(doc).pdf $(doc)-prev.pdf
+    wget -N https://cloud.jimcoggeshall.com/$(doc).pdf
+    diff -q $(doc).pdf $(doc)-prev.pdf && exit 1
 
-workdir=$(uuidgen)
+    workdir=$(uuidgen)/$(doc)
 
-mkdir -p "$workdir/img"
-pushd "$workdir/img"
+    mkdir -p "$workdir/img"
+    pushd "$workdir/img"
 
-pdfseparate /TodaysPaper.pdf TodaysPaper%03d.pdf
+    pdfseparate /$(doc).pdf $(doc)%03d.pdf
 
-find . -name '*.pdf' | while read f; do
-    pdftocairo -png -cropbox -singlefile -r 250 "$f" "$(basename $f '.pdf')"
-    rm -f "$f"
+    find . -name '*.pdf' | while read f; do
+        pdftocairo -png -cropbox -singlefile -r 250 "$f" "$(basename $f '.pdf')"
+        rm -f "$f"
+    done
+
+    popd
+
+    pushd "$workdir"
+
+    find img -name '*.png' |\
+        sort -n |\
+        awk 'BEGIN { \
+            printf("var pagesOrig = [\n"); \
+        } \
+        NR == 1 { \
+            printf("  \"%s\"", $0); \
+        } \
+        NR > 1 { \
+            printf(",\n  \"%s\"", $0); \
+        } \
+        END { \
+            printf("\n];\n"); \
+        }' > list.js
+
+
+    find img -name '*.png' | sort -n | head -1 | while read f; do
+        ln -sf "$f" front.png
+    done
+
+    chmod -R 777 img
+    chmod -R 777 list.js
+    chmod -R 777 front.png
+
+    rm -rf /var/www/jimcoggeshall.com/papers/$(doc)/img || :
+    mv img /var/www/jimcoggeshall.com/papers/$(doc)
+    rm -rf /var/www/jimcoggeshall.com/papers/$(doc)/list.js || :
+    mv list.js /var/www/jimcoggeshall.com/paper/$(doc)
+
+    popd
+
+    rm -rf "$workdir"
 done
 
-popd
-
-pushd "$workdir"
-
-find img -name '*.png' |\
-    sort -n |\
-	   awk 'BEGIN { \
-        printf("var pagesOrig = [\n"); \
-    } \
-    NR == 1 { \
-        printf("  \"%s\"", $0); \
-    } \
-    NR > 1 { \
-        printf(",\n  \"%s\"", $0); \
-    } \
-    END { \
-        printf("\n];\n"); \
-    }' > list.js
-
-
-
-chmod -R 777 img
-chmod -R 777 list.js
-
-rm -rf /var/www/jimcoggeshall.com/paper/img || :
-mv img /var/www/jimcoggeshall.com/paper
-rm -rf /var/www/jimcoggeshall.com/paper/list.js || :
-mv list.js /var/www/jimcoggeshall.com/paper
-
-popd
-
-rm -rf "$workdir"
+ln -sf ../papers/TodaysPaper/list.js /var/www/jimcoggeshall.com/paper/list.js
+ln -sf ../papers/TodaysPaper/img /var/www/jimcoggeshall.com/paper/img
