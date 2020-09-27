@@ -69,7 +69,7 @@ services:
         network_mode: host
         volumes: 
             - type: bind
-              source: ./var/www/jimcoggeshall.com/paper
-              target: /var/www/jimcoggeshall.com/paper
+              source: ./var/www/jimcoggeshall.com
+              target: /var/www/jimcoggeshall.com
               bind:
                   propagation: rshared
