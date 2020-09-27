@@ -53,5 +53,3 @@ mv list.js /var/www/jimcoggeshall.com/paper
 popd
 
 rm -rf "$workdir"
-
-sleep 60
