@@ -11,11 +11,33 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="icon" href="favicon.ico" />
+    <style>
+      .inner {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+       	display: inline;
+        justify-content: center;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        padding: 0vh 5vw 0vh 5vw;
+        margin: 0px;
+        border: 0px;
+      }
+      .outer {
+        color: white;
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="container">
-      <div class="pure-g">
+    <div class="container outer">
+      <div class="pure-g inner">
         <div class="pure-u-1 pure-u-md-1-3">
           <a href="sdut/">
             <img class="pure-img" src="sdut/front.png">
