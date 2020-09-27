@@ -6,16 +6,16 @@ sleep 60
 
 for doc in sdut lat TodaysPaper; do
     pushd /
-    cp $(doc).pdf $(doc)-prev.pdf
-    wget -N https://cloud.jimcoggeshall.com/$(doc).pdf
-    diff -q $(doc).pdf $(doc)-prev.pdf && exit 1
+    cp ${doc}.pdf ${doc}-prev.pdf
+    wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
+    diff -q ${doc}.pdf ${doc}-prev.pdf && exit 1
 
-    workdir=$(uuidgen)/$(doc)
+    workdir=$(uuidgen)/${doc}
 
     mkdir -p "$workdir/img"
     pushd "$workdir/img"
 
-    pdfseparate /$(doc).pdf $(doc)%03d.pdf
+    pdfseparate /${doc}.pdf ${doc}%03d.pdf
 
     find . -name '*.pdf' | while read f; do
         pdftocairo -png -cropbox -singlefile -r 250 "$f" "$(basename $f '.pdf')"
@@ -50,10 +50,10 @@ for doc in sdut lat TodaysPaper; do
     chmod -R 777 list.js
     chmod -R 777 front.png
 
-    rm -rf /var/www/jimcoggeshall.com/papers/$(doc)/img || :
-    mv img /var/www/jimcoggeshall.com/papers/$(doc)
-    rm -rf /var/www/jimcoggeshall.com/papers/$(doc)/list.js || :
-    mv list.js /var/www/jimcoggeshall.com/paper/$(doc)
+    rm -rf /var/www/jimcoggeshall.com/papers/${doc}/img || :
+    mv img /var/www/jimcoggeshall.com/papers/${doc}
+    rm -rf /var/www/jimcoggeshall.com/papers/${doc}/list.js || :
+    mv list.js /var/www/jimcoggeshall.com/paper/${doc}
 
     popd
 
