@@ -134,6 +134,7 @@
         "image": image
       }
     });
+    var firstPageSrc = pagesSrc[0];
 
     function cachePages() {
       pages.forEach((p, i) => {
@@ -168,10 +169,16 @@
 
     function nextImage() {
       pages.push(pages.shift());
+      if (pages[0].source === firstPageSrc) {
+        window.history.back();
+      }
       newPage();
     }
 
     function prevImage() {
+      if (pages[0].source === firstPageSrc) {
+        window.history.back();
+      }
       pages.unshift(pages.pop());
       newPage();
     }
