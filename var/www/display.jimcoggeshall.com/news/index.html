@@ -61,7 +61,8 @@
       var wsManualTimeout;
       
       function startWebsocket() {
-        ws = new WebSocket("wss://display.jimcoggeshall.com/news/ws");
+        var hostname = window.location.hostname;
+        ws = new WebSocket("wss://" + hostname + "/news/ws");
         wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
         ws.onmessage = function(event) {
           var m = JSON.parse(event.data);

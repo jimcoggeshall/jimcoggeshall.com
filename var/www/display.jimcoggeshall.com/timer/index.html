@@ -213,7 +213,8 @@
     }
 
     function startWebsocket() {
-      ws = new WebSocket("wss://display.jimcoggeshall.com/timer/ws");
+      var hostname = window.location.hostname;
+      ws = new WebSocket("wss://" + hostname + "/timer/ws");
       wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
       recentFromWebsocket();
       ws.onmessage = function(event) {
