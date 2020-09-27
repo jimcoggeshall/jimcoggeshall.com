@@ -39,8 +39,8 @@
         display: none;
         top: 50%;
         left: 50%;
-        font-size: 30vw;
-        line-height: 30vw;
+        font-size: 5vw;
+        line-height: 5vw;
         color: black;
         opacity: 0.3;
         z-index: 5;
@@ -260,6 +260,7 @@
       var startX, startY, distX, distY, elapsedTime, startTime;
       var minDistance = 50;
       var maxDistance = 100;
+      var maxDistanceVertical = 50;
       var allowedTime = 150;
     
       document.getElementById("topLeftIcon").addEventListener("touchend", (e) => {
@@ -304,7 +305,7 @@
         distY = touchobj.pageY - startY;
         elapsedTime = new Date().getTime() - startTime;
         if (elapsedTime <= allowedTime) {
-          if (Math.abs(distX) >= minDistance && Math.abs(distY) <= maxDistance) {
+          if (Math.abs(distX) >= minDistance && Math.abs(distY) <= maxDistanceVertical) {
             swipedir = (distX < 0) ? "Left" : "Right";
           }
           else if (Math.abs(distY) >= minDistance && Math.abs(distX) <= maxDistance) {
