@@ -61,7 +61,7 @@
       var wsManualTimeout;
       
       function startWebsocket() {
-        var hostname = "broadcast.jimcoggeshall.com";
+        var hostname = window.location.hostname;
         ws = new WebSocket("wss://" + hostname + "/news/ws");
         wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
         ws.onmessage = function(event) {
