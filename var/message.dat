@@ -137,7 +137,7 @@ iframe {
         <iframe src="/timer" allow="autoplay" /></iframe>
       </div>
       <div class="grid-item grid-paper">
-        <iframe src="https://jimcoggeshall.com/paper" allow="autoplay" /></iframe>
+        <iframe src="/paper" allow="autoplay" /></iframe>
       </div>
     </div>
   </div>
