@@ -57,6 +57,7 @@ iframe {
   grid-column-end: 4; 
   grid-row-start: 1; 
   grid-row-end: 3;
+  overflow: scroll;
 }
 @media (max-aspect-ratio: 13/12) {
   .display-grid {
@@ -96,6 +97,7 @@ iframe {
     grid-column-end: 3; 
     grid-row-start: 2; 
     grid-row-end: 4;
+    overflow: scroll;
   }
 }
 .grid-item {
