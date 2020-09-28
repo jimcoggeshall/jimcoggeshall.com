@@ -39,8 +39,8 @@
         display: none;
         top: 50%;
         left: 50%;
-        font-size: 5vw;
-        line-height: 5vw;
+        font-size: 10vmin;
+        line-height: 10vmin;
         color: black;
         opacity: 0.3;
         z-index: 5;
@@ -169,7 +169,6 @@
         "image": image
       }
     });
-    var firstPageSrc = pagesSrc[0];
 
     function cachePages() {
       pages.forEach((p, i) => {
@@ -204,16 +203,10 @@
 
     function nextImage() {
       pages.push(pages.shift());
-      if (pages[0].source === firstPageSrc) {
-        document.location.replace(referrer);
-      }
       newPage();
     }
 
     function prevImage() {
-      if (pages[0].source === firstPageSrc) {
-        document.location.replace(referrer);
-      }
       pages.unshift(pages.pop());
       newPage();
     }
