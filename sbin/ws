@@ -64,7 +64,7 @@ def main():
 
 
     start_server_broadcast = websockets.serve(broadcast, "127.0.0.1", 8888)
-    start_server_update = websockets.serve(update, "127.0.0.1", 9888)
+    start_server_update = websockets.serve(update, "0.0.0.0", 9888)
 
     asyncio.get_event_loop().run_until_complete(start_server_broadcast)
     asyncio.get_event_loop().run_until_complete(start_server_update)
