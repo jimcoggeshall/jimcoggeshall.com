@@ -33,8 +33,10 @@
     const scrollSecondsMax = 180;
     const scrollSecondsMin = 30;
     const pageSeconds = 5;
+    const pageFailsafeSeconds = 210;
     var scrollInterval;
     var pageTimeout;
+    var pageFailsafeTimeout;
     var pages = pagesOrig.slice(0, -1);
     var scrollCoef = [1, 0, -1, 0];
 
@@ -64,6 +66,17 @@
       var bottomEdgePosition = window.innerHeight + window.pageYOffset;
       var remainingVertical = computedTotalHeight - bottomEdgePosition;
       return Math.max(remainingVertical, 0);
+    }
+    
+    function setPageFailsafeTimeout() {
+      clearTimeout(pageFailsafeTimeout);
+      pageFailsafeTimeout = setTimeout(() => {
+        clearInterval(scrollInterval);
+        clearTimeout(pageTimeout);
+        nextImage();
+        clearTimeout(pageTimeout);
+        clearInterval(scrollInterval);
+      }, 1000*pageFailsafeSeconds);
     }
 
     function setPageTimeout() {
@@ -108,6 +121,7 @@
 
     function newPage() {
       document.getElementById("im").src = pages[0];
+      setPageFailsafeTimeout();
     }
 
     function nextImage() {
