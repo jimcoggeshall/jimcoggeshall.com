@@ -58,45 +58,59 @@
 
     <script>
 
-  var fmtOptions = {   
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  };
+      var fmtOptions = {   
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
 
-  setInterval(() => {
-    var ts = new Date();
-    var thedate = ts.toLocaleString("en-US", fmtOptions);
-    var thetime = ts.toLocaleTimeString();
-    document.getElementById("thedate").textContent = thedate;
-    document.getElementById("thetime").textContent = thetime;
-    try {
-      fixLayout();
-    } catch (err) {
-      () => {};
-    }
-  }, 500);
+      setInterval(() => {
+        var ts = new Date();
+        var thedate = ts.toLocaleString("en-US", fmtOptions);
+        var thetime = ts.toLocaleTimeString();
+        document.getElementById("thedate").textContent = thedate;
+        document.getElementById("thetime").textContent = thetime;
+        try {
+          fixLayout();
+        } catch (err) {
+          fixLayoutSafe();
+        }
+      }, 500);
 
-  function render(m) {
-    document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
-    document.getElementById("inner").style.lineHeight = "110%";
-    document.getElementById("inner").innerHTML = m;
-    fitVertical(m);
-  }
+      function render(m) {
+        document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
+        document.getElementById("inner").style.lineHeight = "110%";
+        document.getElementById("inner").innerHTML = m;
+        fitVertical(m);
+      }
 
-  function fitVertical(m) {
-    while (document.getElementById("inner").scrollHeight > window.innerHeight) {
-      let style = window.getComputedStyle(document.getElementById("inner"), null);
-      let cfs = style.getPropertyValue("font-size");
-      document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
-      document.getElementById("inner").innerHTML = m;
-    }
-  }
+      function renderSafe(m) {
+        document.getElementById("inner").style.fontSize = "calc(3em + 1vmin)";
+        document.getElementById("inner").innerHTML = m;
+      }
 
-  function fixLayout() {
-    render(document.getElementById("inner").innerHTML);
-  }
+      function fitVertical(m) {
+        let i = 0;
+        while (document.getElementById("inner").scrollHeight > window.innerHeight) {
+          if (i++ > 10) {
+            document.getElementById("inner").innerHTML = m;
+            return;
+          }
+          let style = window.getComputedStyle(document.getElementById("inner"), null);
+          let cfs = style.getPropertyValue("font-size");
+          document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
+          document.getElementById("inner").innerHTML = m;
+        }
+      }
+
+      function fixLayout() {
+        render(document.getElementById("inner").innerHTML);
+      }
+      
+      function fixLayoutSafe() {
+        renderSafe(document.getElementById("inner").innerHTML);
+      }
 
     </script>
   </body>
