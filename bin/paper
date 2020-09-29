@@ -6,9 +6,7 @@ sleep 60
 
 for doc in sdut lat TodaysPaper; do
     pushd /
-    cp ${doc}.pdf ${doc}-prev.pdf
     wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
-    diff -q ${doc}.pdf ${doc}-prev.pdf && exit 1
 
     workdir=$(uuidgen)/${doc}
 
