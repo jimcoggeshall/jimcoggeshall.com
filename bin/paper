@@ -8,7 +8,7 @@ for doc in sdut lat TodaysPaper; do
     pushd /
     wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
 
-    workdir=$(uuidgen)/${doc}
+    workdir=/$(uuidgen)/${doc}
 
     rm -rf "$workdir" || :
     mkdir -p "$workdir/img"
