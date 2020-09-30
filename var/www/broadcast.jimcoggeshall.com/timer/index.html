@@ -217,7 +217,7 @@
     function startWebsocket() {
       var hostname = window.location.hostname;
       ws = new WebSocket("wss://" + hostname + "/timer/ws");
-      wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
+      resetTimeout();
       recentFromWebsocket();
       ws.onmessage = function(event) {
         resetTimeout();
@@ -231,7 +231,7 @@
     
     function resetTimeout() {
       clearTimeout(wsManualTimeout);
-      wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
+      wsManualTimeout = setTimeout(() => restartWebsocket(), 10000);
     }
     
     function restartWebsocket() {

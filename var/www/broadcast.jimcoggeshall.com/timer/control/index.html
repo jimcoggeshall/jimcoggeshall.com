@@ -13,6 +13,9 @@
       .button-container {
         display: flex;
         margin: 100px;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-content: center;
       }
       button {
         padding: 20px 20px;
@@ -35,12 +38,12 @@
 </head>
 
 <body>
-  <div class="flex-container">
+  <div class="flex-container button-container">
     <button data-mpayload="clearTimer">Clear Timer</button>
     <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
     <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
   </div>
-  <div class="flex-container">
+  <div class="flex-container button-container">
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="60">Add 1 minute</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="120">Add 2 minutes</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="180">Add 3 minutes</button>
@@ -111,7 +114,7 @@
     function startWebsocket() {
       var hostname = window.location.hostname;
       ws = new WebSocket("wss://" + hostname + "/timer/ws");
-      wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
+      resetTimeout();
       recentFromWebsocket();
       ws.onmessage = function(event) {
         var m = JSON.parse(event.data);
@@ -182,6 +185,7 @@
     }
 
     startWebsocket();
+    
   </script>
 </body>
 
