@@ -116,12 +116,14 @@
       clearTimeout(sendClearTimeout);
       clearInterval(countdown);
       secondsLeft = 0;
-      document.getElementById("thebells").textContent = "";
-      document.getElementById("thetime").textContent = "";
-      document.getElementById("thehour").textContent = "";
-      document.getElementById("inner").style.visibility = "hidden";
-      document.getElementById("broadcast").style.visibility = "visible";
-      fixLayoutOuter();
+      if (recentMessageData.action !== "clearTimer") {
+        document.getElementById("thebells").textContent = "";
+        document.getElementById("thetime").textContent = "";
+        document.getElementById("thehour").textContent = "";
+        document.getElementById("inner").style.visibility = "hidden";
+        document.getElementById("broadcast").style.visibility = "visible";
+        fixLayoutOuter();
+      }
       return;
     }
 
@@ -223,8 +225,8 @@
         resetTimeout();
         var m = JSON.parse(event.data);
         if (recentMessageData != m) {
-          recentMessageData = m;
           fromWebsocket(m);
+          recentMessageData = m;
         }
       };
     }
