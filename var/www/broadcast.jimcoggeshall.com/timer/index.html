@@ -90,7 +90,7 @@
     var recentMessageData = {
       action: "noop"
     };
-    var countdown = setInterval(() => {}, 1000);
+    var countdown = setInterval(() => {}, 500);
     var secondsLeft = 0;
     var endTimeInSeconds = 0;
     document.getElementById("inner").style.backgroundColor = "black";
@@ -143,8 +143,10 @@
         secondsLeft = Math.round((endTimeInSeconds*1000 - Date.now())/1000);
 
         if (warningBellsEnabled && (secondsLeft === 120 || secondsLeft === 300)) {
-          audio.play();
-          audio = document.getElementById("bell");
+          if (audio.paused) {
+            audio.play();
+            setTimeout(() => {audio = document.getElementById("bell")}, 10000);
+          }
         }
 
         if (secondsLeft <= 0) {
@@ -161,7 +163,7 @@
 
         fixLayoutInner();
 
-      }, 1000);
+      }, 500);
 
     }
 
