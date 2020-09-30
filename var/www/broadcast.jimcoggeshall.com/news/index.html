@@ -85,7 +85,9 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
+        document.getElementById("item-title").style.fontSize = "calc(5em + 2vw)";
         document.getElementById("item-description").textContent = description;
+        document.getElementById("item-description").style.fontSize = "calc(3em + 1vw)";
         fixLayout();
       }
 
