@@ -15,6 +15,7 @@ class Messenger:
         self._connected = set()
         with open("/var/timer/state.json", "r") as f:
             message = json.load(f)
+            self._noop_message = json.dumps(message, separators=(",", ":"))
         try:
             with open("/var/timer/state.mod.json", "r") as f:
                 message = json.load(f)
@@ -23,9 +24,10 @@ class Messenger:
         self._message = json.dumps(message, separators=(",", ":"))
         
     async def update_message(self, new_message):
-        self._message = new_message
-        with open("/var/timer/state.mod.json", "w") as f:
-            f.write(new_message)
+        if new_message != self._noop_message:
+            self._message = new_message
+            with open("/var/timer/state.mod.json", "w") as f:
+                f.write(new_message)
         async with self._cond:
             self._cond.notify(n=1)
 
@@ -45,6 +47,10 @@ class Messenger:
     async def _send(self):
         message = self._message
         await asyncio.wait([ws.send(message) for ws in self._connected])
+    
+    async def get_noop(self):
+        return self._noop_message
+        
 
 
 def main():
@@ -70,13 +76,14 @@ def main():
             while True:
                 consumer_task = asyncio.ensure_future(consumer_handler(websocket, path))
                 producer_task = asyncio.ensure_future(producer_handler(websocket, path))
-
                 done, pending = await asyncio.wait( 
                     [consumer_task, producer_task],
                     return_when=asyncio.FIRST_COMPLETED,
+                    timeout=30
                 )
                 for task in pending:
                     task.cancel()
+                await websocket.send(messenger.get_noop())
 
         finally:
             await messenger.unregister(websocket)

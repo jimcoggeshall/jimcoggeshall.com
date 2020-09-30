@@ -220,12 +220,12 @@
       wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
       recentFromWebsocket();
       ws.onmessage = function(event) {
+        resetTimeout();
         var m = JSON.parse(event.data);
         if (recentMessageData != m) {
           recentMessageData = m;
           fromWebsocket(m);
         }
-        resetTimeout();
       };
     }
     
