@@ -102,10 +102,20 @@
         document.getElementById("inner").style.lineHeight = "120%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
+        fitHorizontal(m);
       }
 
       function fitVertical(m) {
         while (document.getElementById("inner").scrollHeight > window.innerHeight) {
+          let style = window.getComputedStyle(document.getElementById("inner"), null);
+          let cfs = style.getPropertyValue("font-size");
+          document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
+          document.getElementById("inner").innerHTML = m;
+        }
+      }
+      
+      function fitHorizontal(m) {
+        while (document.getElementById("inner").scrollWidth > window.innerWidth) {
           let style = window.getComputedStyle(document.getElementById("inner"), null);
           let cfs = style.getPropertyValue("font-size");
           document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
