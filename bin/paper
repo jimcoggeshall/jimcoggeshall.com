@@ -22,6 +22,7 @@ for doc in sdut lat TodaysPaper; do
         ((i=i%N)); ((i++==0)) && wait
         (pdftocairo -png -cropbox -singlefile -r 250 "$f" "$(basename $f '.pdf')"; rm -f "$f") &
     done
+    wait
     )
     wait
 
