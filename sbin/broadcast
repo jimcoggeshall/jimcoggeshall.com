@@ -49,9 +49,12 @@ def main():
     messenger = Messenger(lock)
 
     async def broadcast(websocket, path):
+        sent = Set()
         while True:
             message = await messenger.current_message()
-            await websocket.send(message)
+            if not message in sent:
+                sent.add(message)
+                await websocket.send(message)
             await asyncio.sleep(1)
 
 
