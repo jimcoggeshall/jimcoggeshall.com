@@ -274,6 +274,7 @@
       document.getElementById("inner").style.lineHeight = "120%";
       document.getElementById("inner").innerHTML = m;
       fitVerticalInner(m);
+      fitHorizontalInner(m);
     }
 
     function fitVerticalInner(m) {
@@ -284,16 +285,36 @@
         document.getElementById("inner").innerHTML = m;
       }
     }
+    
+    function fitHorizontalInner(m) {
+      while (document.getElementById("inner").scrollWidth > window.innerWidth) {
+        let style = window.getComputedStyle(document.getElementById("inner"), null);
+        let cfs = style.getPropertyValue("font-size");
+        document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
+        document.getElementById("inner").innerHTML = m;
+      }
+    }
+
 
     function renderOuter(m) {
       document.getElementById("outer").style.fontSize = "calc(1em + 1vw)";
       document.getElementById("outer").style.lineHeight = "120%";
       document.getElementById("outer").innerHTML = m;
       fitVerticalOuter(m);
+      fitHorizontalOuter(m);
     }
 
     function fitVerticalOuter(m) {
       while (document.getElementById("outer").scrollHeight > window.innerHeight) {
+        let style = window.getComputedStyle(document.getElementById("outer"), null);
+        let cfs = style.getPropertyValue("font-size");
+        document.getElementById("outer").style.fontSize = 0.8*cfs.replace("px", "") + "px";
+        document.getElementById("outer").innerHTML = m;
+      }
+    }
+    
+    function fitHorizontalOuter(m) {
+      while (document.getElementById("outer").scrollWidth > window.innerWidth) {
         let style = window.getComputedStyle(document.getElementById("outer"), null);
         let cfs = style.getPropertyValue("font-size");
         document.getElementById("outer").style.fontSize = 0.8*cfs.replace("px", "") + "px";
