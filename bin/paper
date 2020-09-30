@@ -23,6 +23,7 @@ for doc in sdut lat TodaysPaper; do
         (pdftocairo -png -cropbox -singlefile -r 250 "$f" "$(basename $f '.pdf')"; rm -f "$f") &
     done
     )
+    wait
 
     popd
 
@@ -64,5 +65,9 @@ for doc in sdut lat TodaysPaper; do
     rm -rf "$workdir"
 done
 
-ln -sf ../papers/TodaysPaper/list.js /var/www/jimcoggeshall.com/paper/list.js
-ln -sf ../papers/TodaysPaper/img /var/www/jimcoggeshall.com/paper/img
+pushd /var/www/jimcoggeshall.com/paper
+rm -f list.js
+ln -sf ../papers/TodaysPaper/list.js
+rm -f img
+ln -sf ../papers/TodaysPaper/img 
+popd
