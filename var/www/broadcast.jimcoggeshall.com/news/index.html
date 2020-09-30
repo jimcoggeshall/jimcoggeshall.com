@@ -63,7 +63,7 @@
       function startWebsocket() {
         var hostname = window.location.hostname;
         ws = new WebSocket("wss://" + hostname + "/news/ws");
-        wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
+        resetTimeout();
         ws.onmessage = function(event) {
           var m = JSON.parse(event.data);
           var title = removeTags(m.Title);
@@ -85,9 +85,7 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
-        document.getElementById("item-title").style.fontSize = "calc(5em + 2vw)";
         document.getElementById("item-description").textContent = description;
-        document.getElementById("item-description").style.fontSize = "calc(3em + 1vw)";
         fixLayout();
       }
 

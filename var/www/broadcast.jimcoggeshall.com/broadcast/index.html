@@ -48,19 +48,24 @@
 
       var ws;
       var wsManualTimeout;
+      var messageTimeout;
+      var currentMessage = "";
       
       function startWebsocket() {
         var hostname = window.location.hostname;
         ws = new WebSocket("wss://" + hostname + "/broadcast/ws");
-        wsManualTimeout = setTimeout(() => restartWebsocket(ws), 60000);
+        resetTimeout();
         ws.onmessage = function(event) {
           resetTimeout();
           var m = event.data;
-          var am = m.split("\t");
-          renderArray([am[0]]);
-          setTimeout(function() {
-            renderArray(am);
-          }, 10000);
+          if (m !== currentMessage) {
+            currentMessage = m;
+            var am = m.split("\t");
+            renderArray([am[0]]);
+            messageTimeout = setTimeout(function() {
+              renderArray(am);
+            }, 10000);
+          }
         };
       }
       
@@ -71,6 +76,7 @@
       
       function restartWebsocket() {
         ws.close();
+        clearTimeout(wsManualTimeout);
         startWebsocket();
       }
 

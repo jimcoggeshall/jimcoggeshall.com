@@ -29,14 +29,14 @@ class Messenger:
 
     async def _receive_message(self):
         now = datetime.datetime.now()
-        if (now - self._recent_fetch).total_seconds() < 25:
+        if (now - self._recent_fetch).total_seconds() < 45:
             return
         with await self._lock:
             self._fetch_message_now()
 
     async def current_message(self):
         try:
-            await asyncio.wait_for(self._receive_message(), timeout=1)
+            await asyncio.wait_for(self._receive_message(), timeout=5)
         except asyncio.TimeoutError:
             pass
         return self._message
@@ -49,15 +49,11 @@ def main():
     messenger = Messenger(lock)
 
     async def broadcast(websocket, path):
-        sent = set()
         while True:
             message = await messenger.current_message()
-            if not message in sent:
-                if not message == "":
-                    sent.add(message)
-                    await websocket.send(message)
-            if len(sent) > 50:
-                sent = set()
+            if not message == "":
+                sent.add(message)
+                await websocket.send(message)
             await asyncio.sleep(1)
 
 
