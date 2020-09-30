@@ -10,6 +10,7 @@ for doc in sdut lat TodaysPaper; do
 
     workdir=$(uuidgen)/${doc}
 
+    rm -rf "$workdir" || :
     mkdir -p "$workdir/img"
     pushd "$workdir/img"
 
