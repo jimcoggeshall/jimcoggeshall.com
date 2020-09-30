@@ -231,7 +231,7 @@
     
     function resetTimeout() {
       clearTimeout(wsManualTimeout);
-      wsManualTimeout = setTimeout(() => restartWebsocket(), 10000);
+      wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
     }
     
     function restartWebsocket() {

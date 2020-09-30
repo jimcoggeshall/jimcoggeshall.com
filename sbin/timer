@@ -38,18 +38,21 @@ class Messenger:
 
     async def unregister(self, websocket):
         self._connected.remove(websocket)
-
-    async def await_message(self):
+        
+    async def _listen(self):
         async with self._cond:
             await self._cond.wait()
+            await self._send()
+
+    async def await_message(self):
+        try:
+            await asyncio.wait_for(self._listen, timeout=20)
+        finally:
             await self._send()
 
     async def _send(self):
         message = self._message
         await asyncio.wait([ws.send(message) for ws in self._connected])
-    
-    async def get_noop(self):
-        return self._noop_message
         
 
 
@@ -83,7 +86,6 @@ def main():
                 )
                 for task in pending:
                     task.cancel()
-                await websocket.send(messenger.get_noop())
 
         finally:
             await messenger.unregister(websocket)
