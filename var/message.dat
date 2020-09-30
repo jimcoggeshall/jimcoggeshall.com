@@ -59,7 +59,7 @@ iframe {
   grid-row-end: 3;
   overflow: hidden;
 }
-@media (max-aspect-ratio: 13/12) {
+@media screen and (max-aspect-ratio: 13/12) {
   .display-grid {
     box-sizing: border-box;
     border: none;
@@ -92,7 +92,7 @@ iframe {
     grid-row-start: 2; 
     grid-row-end: 3;
   }
-   .grid-paper {
+  .grid-paper {
     grid-column-start: 2; 
     grid-column-end: 3; 
     grid-row-start: 3; 
@@ -100,7 +100,7 @@ iframe {
     overflow: hidden;
   }
 }
-@media (min-width: 3840px) {
+@media screen and (min-width: 3840px) {
   .display-grid {
     box-sizing: border-box;
     border: none;
