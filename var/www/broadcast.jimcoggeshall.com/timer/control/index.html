@@ -23,8 +23,8 @@
         display: flex;
         margin: 100px;
         flex-flow: row wrap;
-        justify-content: space-around;
-        align-content: center;
+        justify-content: flex-start;
+        align-content: space-around;
       }
       button {
         padding: 20px 20px;
@@ -47,13 +47,15 @@
 </head>
 
 <body>
-  <div class="flex-container text-container">
-    <p id="timerState"></p>
-  </div>
   <div class="flex-container button-container">
     <button data-mpayload="clearTimer">Clear Timer</button>
+  </div>
+  <div class="flex-container button-container">
     <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
     <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
+  </div>
+  <div class="flex-container text-container">
+    <p id="timerState"></p>
   </div>
   <div class="flex-container button-container">
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="60">Add 1 minute</button>
@@ -63,6 +65,9 @@
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="600">Add 10 minutes</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="900">Add 15 minutes</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="1800">Add 30 minutes</button>
+  </div>
+  <div class="flex-container">
+    <iframe src="//timer" scrolling="no" /></iframe>
   </div>
 
   <script>
