@@ -29,5 +29,5 @@ iframe {
 }
 </style>
 <div class="outer" id="outer">
-  <iframe src="https://draw.coggeshall.io/?whiteboardid=public" allow="autoplay" /></iframe>
+  <iframe src="https://meet.coggeshall.io/broadcast#config.disableDeepLinking=true" allow="autoplay" /></iframe>
 </div>
