@@ -46,7 +46,7 @@ class Messenger:
 
     async def await_message(self):
         try:
-            await asyncio.wait_for(self._listen(), timeout=20)
+            await asyncio.wait_for(self._listen(), timeout=1)
         finally:
             await self._send()
 

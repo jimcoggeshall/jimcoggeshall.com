@@ -120,10 +120,10 @@
         document.getElementById("thebells").textContent = "";
         document.getElementById("thetime").textContent = "";
         document.getElementById("thehour").textContent = "";
-        document.getElementById("inner").style.visibility = "hidden";
-        document.getElementById("broadcast").style.visibility = "visible";
-        fixLayoutOuter();
       }
+      document.getElementById("inner").style.visibility = "hidden";
+      document.getElementById("broadcast").style.visibility = "visible";
+      fixLayoutOuter();
       return;
     }
 
@@ -335,6 +335,7 @@
     }
 
     startWebsocket();
+    
   </script>
 </body>
 
