@@ -10,6 +10,15 @@
     <title>Timer</title>
     <link rel="icon" href="favicon.ico" />
     <style>
+      .text-container {
+        display: flex;
+        margin: 100px;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-content: center;
+        font-family: Consolas, ui-monospace, monospace;
+        font-weight: normal;
+      }
       .button-container {
         display: flex;
         margin: 100px;
@@ -38,6 +47,9 @@
 </head>
 
 <body>
+  <div class="flex-container text-container">
+    <p id="timerState"></p>
+  </div>
   <div class="flex-container button-container">
     <button data-mpayload="clearTimer">Clear Timer</button>
     <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
@@ -151,6 +163,7 @@
     }
 
     function fromWebsocket(parsed) {
+      document.getElementById("timerState").innerText = JSON.stringify(parsed);
       var action = parsed.action;
       if (action === "startTimerEndsAt") {
         endTimeInSeconds = parseInt(parsed.endTime);
