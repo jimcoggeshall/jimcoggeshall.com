@@ -90,7 +90,7 @@
     var recentMessageData = {
       action: "noop"
     };
-    var countdown = setInterval(() => {}, 500);
+    var countdown;
     var secondsLeft = 0;
     var endTimeInSeconds = 0;
     document.getElementById("inner").style.backgroundColor = "black";
@@ -220,11 +220,11 @@
       resetTimeout();
       recentFromWebsocket();
       ws.onmessage = function(event) {
-        resetTimeout();
         var m = JSON.parse(event.data);
         if (recentMessageData != m) {
           fromWebsocket(m);
         }
+        resetTimeout();
       };
     }
     
