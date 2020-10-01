@@ -85,7 +85,6 @@
 
   <script>
     var ws;
-    var wsManualTimeout;
     var warningBellsEnabled = true;
     var recentMessageData = {
       action: "noop"
@@ -220,20 +219,15 @@
     function startWebsocket() {
       var hostname = window.location.hostname;
       ws = new WebSocket("wss://" + hostname + "/timer/ws");
-      resetTimeout();
       recentFromWebsocket();
       ws.onmessage = function(event) {
         var m = JSON.parse(event.data);
         fromWebsocket(m);
-        resetTimeout();
       };
     }
     
-    function resetTimeout() {
-      clearTimeout(wsManualTimeout);
-      wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
-    }
-    
+
+      
     function restartWebsocket() {
       try {
         ws.close();
@@ -338,6 +332,12 @@
     }
 
     startWebsocket();
+    setInterval(() => {
+      let wsState = ws.readyState;
+      if (wsState > 1) {
+        restartWebsocket();
+      }
+    }, 30000);
     
   </script>
 </body>
