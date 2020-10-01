@@ -194,6 +194,8 @@
         document.getElementById("outer").style.backgroundColor = "black";
         document.getElementById("thetime").style.color = "white";
         document.getElementById("thehour").style.color = "white";
+        document.getElementById("inner").style.visibility = "visible";
+        document.getElementById("broadcast").style.visibility = "hidden";
         setTimerForSeconds(remaining);
       }
     }
@@ -221,20 +223,22 @@
       recentFromWebsocket();
       ws.onmessage = function(event) {
         var m = JSON.parse(event.data);
-        if (recentMessageData != m) {
-          fromWebsocket(m);
-        }
+        fromWebsocket(m);
         resetTimeout();
       };
     }
     
     function resetTimeout() {
       clearTimeout(wsManualTimeout);
-      wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
+      wsManualTimeout = setTimeout(() => restartWebsocket(), 5000);
     }
     
     function restartWebsocket() {
-      ws.close();
+      try {
+        ws.close();
+      } catch (e) {
+        () => {};
+      }
       startWebsocket();
     }
 
