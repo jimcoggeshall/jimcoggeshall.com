@@ -42,11 +42,10 @@ class Messenger:
     async def _listen(self):
         async with self._cond:
             await self._cond.wait()
-            await self._send()
 
     async def await_message(self):
         try:
-            await asyncio.wait_for(self._listen(), timeout=1)
+            await asyncio.wait_for(self._listen(), timeout=5)
         finally:
             await self._send()
 
@@ -74,15 +73,14 @@ def main():
             async def producer_handler(websocket, path):
                 while True:
                     await messenger.await_message()
-                    await asyncio.sleep(1)
+
 
             while True:
                 consumer_task = asyncio.ensure_future(consumer_handler(websocket, path))
                 producer_task = asyncio.ensure_future(producer_handler(websocket, path))
                 done, pending = await asyncio.wait( 
                     [consumer_task, producer_task],
-                    return_when=asyncio.FIRST_COMPLETED,
-                    timeout=30
+                    return_when=asyncio.FIRST_COMPLETED
                 )
                 for task in pending:
                     task.cancel()

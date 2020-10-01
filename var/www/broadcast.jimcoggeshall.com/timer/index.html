@@ -116,11 +116,9 @@
       clearTimeout(sendClearTimeout);
       clearInterval(countdown);
       secondsLeft = 0;
-      if (recentMessageData.action !== "clearTimer") {
-        document.getElementById("thebells").textContent = "";
-        document.getElementById("thetime").textContent = "";
-        document.getElementById("thehour").textContent = "";
-      }
+      document.getElementById("thebells").textContent = "";
+      document.getElementById("thetime").textContent = "";
+      document.getElementById("thehour").textContent = "";
       document.getElementById("inner").style.visibility = "hidden";
       document.getElementById("broadcast").style.visibility = "visible";
       fixLayoutOuter();
@@ -226,7 +224,6 @@
         var m = JSON.parse(event.data);
         if (recentMessageData != m) {
           fromWebsocket(m);
-          recentMessageData = m;
         }
       };
     }
@@ -266,6 +263,7 @@
       } else {
         console.log("Unrecognized message: " + JSON.stringify(parsed));
       }
+      recentMessageData = m;
     }
   
     function recentFromWebsocket() {
