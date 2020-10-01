@@ -69,6 +69,9 @@
 </head>
 
 <body>
+  <audio id="chime" preload="auto" style="visibility: hidden">
+    <source src="/timer/audio/chime.mp3" type="audio/mpeg">
+  </audio>
   <audio id="bell" preload="auto" style="visibility: hidden">
     <source src="/timer/audio/bell.mp3" type="audio/mpeg">
   </audio>
@@ -137,22 +140,30 @@
       clearTimeout(sendClearTimeout);
       clearInterval(countdown);
 
-      var audio = document.getElementById("bell");
+      var bell = document.getElementById("bell");
+      var chime = document.getElementById("chime");
 
       countdown = setInterval(() => {
         secondsLeft = Math.round((endTimeInSeconds*1000 - Date.now())/1000);
 
-        if (warningBellsEnabled && (secondsLeft === 120 || secondsLeft === 300)) {
-          if (audio.paused) {
-            audio.play();
-            setTimeout(() => {audio = document.getElementById("bell")}, 10000);
+        if (warningBellsEnabled && (secondsLeft === 300 || secondsLeft === 600 || secondsLeft === 900 || secondsLeft === 1800)) {
+          if (chime.paused) {
+            chime.play();
+            setTimeout(() => {chime = document.getElementById("chime")}, 10000);
+          }
+        }
+
+        if (warningBellsEnabled && secondsLeft === 120) {
+          if (bell.paused) {
+            bell.play();
+            setTimeout(() => {bell = document.getElementById("bell")}, 10000);
           }
         }
 
         if (secondsLeft <= 0) {
           displayTimeLeft(0);
           clearInterval(countdown);
-          audio.play();
+          bell.play();
           sendClearTimerAfterDelay();
           return;
         }
