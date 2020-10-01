@@ -116,6 +116,7 @@
       clearTimeout(sendClearTimeout);
       clearInterval(countdown);
       secondsLeft = 0;
+      endTimeInSeconds = 0;
       document.getElementById("thebells").textContent = "";
       document.getElementById("thetime").textContent = "";
       document.getElementById("thehour").textContent = "";
@@ -230,7 +231,7 @@
     
     function resetTimeout() {
       clearTimeout(wsManualTimeout);
-      wsManualTimeout = setTimeout(() => restartWebsocket(), 5000);
+      wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
     }
     
     function restartWebsocket() {

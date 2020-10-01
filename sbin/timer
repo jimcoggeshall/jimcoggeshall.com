@@ -30,9 +30,10 @@ class Messenger:
             self._cond.notify(n=1)
 
     async def register(self, websocket):
+        self._connected.add(websocket)
         message = self._message
         await websocket.send(message)
-        self._connected.add(websocket)
+
 
     async def unregister(self, websocket):
         self._connected.remove(websocket)
@@ -66,7 +67,6 @@ def main():
             async def producer_handler(websocket, path):
                 while True:
                     await messenger.await_message()
-                    await asyncio.sleep(1)
 
 
             while True:
