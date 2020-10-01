@@ -15,7 +15,6 @@ class Messenger:
         self._connected = set()
         with open("/var/timer/state.json", "r") as f:
             message = json.load(f)
-            self._noop_message = json.dumps(message, separators=(",", ":"))
         try:
             with open("/var/timer/state.mod.json", "r") as f:
                 message = json.load(f)
@@ -24,10 +23,9 @@ class Messenger:
         self._message = json.dumps(message, separators=(",", ":"))
         
     async def update_message(self, new_message):
-        if new_message != self._noop_message:
-            self._message = new_message
-            with open("/var/timer/state.mod.json", "w") as f:
-                f.write(new_message)
+        self._message = new_message
+        with open("/var/timer/state.mod.json", "w") as f:
+            f.write(new_message)
         async with self._cond:
             self._cond.notify(n=1)
 
@@ -39,14 +37,9 @@ class Messenger:
     async def unregister(self, websocket):
         self._connected.remove(websocket)
         
-    async def _listen(self):
+    async def await_message(self):
         async with self._cond:
             await self._cond.wait()
-
-    async def await_message(self):
-        try:
-            await asyncio.wait_for(self._listen(), timeout=5)
-        finally:
             await self._send()
 
     async def _send(self):
@@ -73,6 +66,7 @@ def main():
             async def producer_handler(websocket, path):
                 while True:
                     await messenger.await_message()
+                    await asyncio.sleep(1)
 
 
             while True:
