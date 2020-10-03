@@ -267,10 +267,7 @@
         } else if (bellsAction === "enableWarningBells") {
           enableWarningBells();
         }
-        var timerMessage = parsed.timerMessage;
-        if (timerMessage) {
-          displayTimerMessage(parsed.timerMessage);
-        }
+        displayTimerMessage(parsed.timerMessage);
       } else if (action === "extendTimerNowEndsAt") {
         startTimerEndsAt(parseInt(parsed.endTime));
         var bellsAction = parsed.bellsAction;
@@ -279,10 +276,7 @@
         } else if (bellsAction === "enableWarningBells") {
           enableWarningBells();
         }
-        var timerMessage = parsed.timerMessage;
-        if (timerMessage) {
-          displayTimerMessage(parsed.timerMessage);
-        }
+        displayTimerMessage(parsed.timerMessage);
       } else if (action === "clearTimer") {
         clearTimer();
       } else if (action === "noop") {
