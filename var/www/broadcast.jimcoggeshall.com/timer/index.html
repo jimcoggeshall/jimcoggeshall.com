@@ -237,6 +237,7 @@
     function displayTimerMessage() {
       var e = document.getElementById("themessage");
       e.textContent = timerMessage;
+      fixLayoutInner();
     }
 
     function startWebsocket() {
@@ -300,7 +301,7 @@
       document.getElementById("themessage").style.fontSize = "calc(5em + 1.5vw)";
       document.getElementById("thetime").style.fontSize = "calc(5em + 1.5vw)";
       document.getElementById("thehour").style.fontSize = "calc(1em + 0.5vw)";
-      document.getElementById("inner").style.lineHeight = "100%";
+      document.getElementById("inner").style.lineHeight = "120%";
       document.getElementById("inner").innerHTML = m;
       fitVerticalInner(m);
       fitHorizontalInner(m);
