@@ -81,6 +81,7 @@
     </div>
     <div class="display-timer" style="visibility: hidden" id="inner">
       <p class="display-bells" id="thebells"></p>
+      <p class="display-message" id="themessage"></p>
       <p class="display-time" id="thetime"></p>
       <p class="display-hour" id="thehour"></p>
     </div>
@@ -97,9 +98,11 @@
     var endTimeInSeconds = 0;
     document.getElementById("inner").style.backgroundColor = "black";
     document.getElementById("thebells").style.color = "white";
+    document.getElementById("themessage").style.color = "white";
     document.getElementById("thetime").style.color = "white";
     document.getElementById("thehour").style.color = "white";
     document.getElementById("thebells").style.fontSize = "calc(1em + 0.5vw)";
+    document.getElementById("themessage").style.fontSize = "calc(5em + 1.5vw)";
     document.getElementById("thetime").style.fontSize = "calc(5em + 1.5vw)";
     document.getElementById("thehour").style.fontSize = "calc(1em + 0.5vw)";
 
@@ -120,6 +123,7 @@
       secondsLeft = 0;
       endTimeInSeconds = 0;
       document.getElementById("thebells").textContent = "";
+      document.getElementById("themessage").textContent = "";
       document.getElementById("thetime").textContent = "";
       document.getElementById("thehour").textContent = "";
       document.getElementById("inner").style.visibility = "hidden";
@@ -226,6 +230,11 @@
       var e = document.getElementById("thebells");
       e.textContent = status;
     }
+    
+    function displayTimerMessage(message) {
+      var e = document.getElementById("themessage");
+      e.textContent = message;
+    }
 
     function startWebsocket() {
       var hostname = window.location.hostname;
@@ -258,6 +267,10 @@
         } else if (bellsAction === "enableWarningBells") {
           enableWarningBells();
         }
+        var timerMessage = parsed.timerMessage;
+        if (timerMessage) {
+          displayTimerMessage(parsed.timerMessage);
+        }
       } else if (action === "extendTimerNowEndsAt") {
         startTimerEndsAt(parseInt(parsed.endTime));
         var bellsAction = parsed.bellsAction;
@@ -265,6 +278,10 @@
           disableWarningBells();
         } else if (bellsAction === "enableWarningBells") {
           enableWarningBells();
+        }
+        var timerMessage = parsed.timerMessage;
+        if (timerMessage) {
+          displayTimerMessage(parsed.timerMessage);
         }
       } else if (action === "clearTimer") {
         clearTimer();

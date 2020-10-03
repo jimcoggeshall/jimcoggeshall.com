@@ -78,6 +78,13 @@
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="1800">Add 30 minutes</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="3600">Add 60 minutes</button>
   </div>
+  <div class="flex-container button-container">
+    <form id="messageForm">
+      <label for="fmessage">Message:</label><br>
+      <input type="text" id="fmessage" name="fmessage" value=""><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 
   <script>
 
@@ -88,7 +95,7 @@
       action: "noop"
     };
     var endTimeInSeconds = 0;
-    
+    var timerMessage = "";
     var warningBellsEnabled = true;
     const bellsButtons = document.querySelectorAll("[data-bpayload]");
     
@@ -118,6 +125,7 @@
         msg.endTime = endTimeInSeconds;
         var bellsAction = warningBellsEnabled ? "enableWarningBells" : "disableWarningBells";
         msg.bellsAction = bellsAction;
+        msg.timerMessage = timerMessage;
         enableBellsButtons();
       }
       if (action === "startTimerEndsAt") {
@@ -127,6 +135,7 @@
         msg.endTime = endTimeInSeconds;
         var bellsAction = warningBellsEnabled ? "enableWarningBells" : "disableWarningBells";
         msg.bellsAction = bellsAction;
+        msg.timerMessage = timerMessage;
         enableBellsButtons();
       }
       ws.send(JSON.stringify(msg));
@@ -187,6 +196,7 @@
         } else if (bellsAction === "enableWarningBells") {
           warningBellsEnabled = true;
         }
+        timerMessage = parsed.timerMessage;
         enableBellsButtons();
       } else if (action === "extendTimerNowEndsAt") {
         endTimeInSeconds = parseInt(parsed.endTime);
@@ -195,10 +205,12 @@
         } else if (bellsAction === "enableWarningBells") {
           warningBellsEnabled = true;
         }
+        timerMessage = parsed.timerMessage;
         enableBellsButtons();
       } else if (action === "clearTimer") {
         endTimeInSeconds = 0;
         warningBellsEnabled = true;
+        timerMessage = "";
         disableBellsButtons();
       } else if (action === "noop") {
         () => {};
@@ -212,6 +224,12 @@
     }
 
     startWebsocket();
+    
+    document.getElementById("messageForm")
+      .addEventListener("submit", (e) => {
+      timerMessage = document.getElementById("fmessage").value;
+      e.preventDefault();
+    });
     
   </script>
 </body>
