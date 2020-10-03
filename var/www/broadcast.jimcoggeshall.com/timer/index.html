@@ -159,11 +159,11 @@
         if (warningBellsEnabled && (secondsLeft === 300 || secondsLeft === 600 || secondsLeft === 900 || secondsLeft === 1800)) {
           if (chime.paused) {
             chime.addEventListener("ended", () => {
-              if (displayMessage) {
+              if (timerMessage) {
                 let minutesLeft = (secondsLeft/60).toString()
                 let speech = new SpeechSynthesisUtterance();
                 speech.lang = "en-US";
-                speech.text = minutesLeft + " minutes until " + displayMessage;
+                speech.text = minutesLeft + " minutes until " + timerMessage;
                 speech.volume = 1;
                 speech.rate = 1;
                 speech.pitch = 1;       
@@ -178,11 +178,11 @@
         if (warningBellsEnabled && secondsLeft === 120) {
           if (bell.paused) {
             bell.addEventListener("ended", () => {
-              if (displayMessage) {
+              if (timerMessage) {
                 let minutesLeft = (secondsLeft/60).toString()
                 let speech = new SpeechSynthesisUtterance();
                 speech.lang = "en-US";
-                speech.text = minutesLeft + " minutes until " + displayMessage;
+                speech.text = minutesLeft + " minutes until " + timerMessage;
                 speech.volume = 1;
                 speech.rate = 1;
                 speech.pitch = 1;       
