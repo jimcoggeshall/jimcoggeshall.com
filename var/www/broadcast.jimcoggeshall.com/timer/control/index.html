@@ -23,7 +23,6 @@
       .text-container {
         display: flex;
         margin: 25px;
-        width: 50vw;
         flex-flow: column wrap;
         justify-content: space-around;
         align-content: center;
@@ -76,9 +75,6 @@
       <input type="submit" id="fsubmit" value="Set Message" disabled>
       <button id="clearMessage" disabled>Clear Message</button>
     </form>
-  </div>
-  <div class="flex-container text-container">
-    <p id="timerState"></p>
   </div>
   <div class="flex-container text-container">
     <iframe src="../../timer" scrolling="no" /></iframe>
@@ -232,7 +228,6 @@
     }
 
     function fromWebsocket(parsed) {
-      document.getElementById("timerState").innerText = JSON.stringify(parsed);
       var action = parsed.action;
       if (action === "startTimerEndsAt") {
         endTimeInSeconds = parseInt(parsed.endTime);
