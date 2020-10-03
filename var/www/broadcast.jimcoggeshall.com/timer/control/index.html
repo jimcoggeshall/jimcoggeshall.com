@@ -228,6 +228,9 @@
     document.getElementById("messageForm")
       .addEventListener("submit", (e) => {
       timerMessage = document.getElementById("fmessage").value;
+      var msg = recentMessageData;
+      msg.timerMessage = timerMessage;
+      ws.send(JSON.stringify(msg));
       e.preventDefault();
     });
     
