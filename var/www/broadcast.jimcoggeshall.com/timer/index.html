@@ -162,11 +162,13 @@
               if (timerMessage) {
                 let minutesLeft = (secondsLeft/60).toString()
                 let speech = new SpeechSynthesisUtterance();
+                let voice = speechSynthesis.getVoices()[0];
+                speech.voice = voice;
                 speech.lang = "en-US";
                 speech.text = minutesLeft + " minutes until " + timerMessage;
                 speech.volume = 1;
                 speech.rate = 1;
-                speech.pitch = 1;       
+                speech.pitch = 1;
                 window.speechSynthesis.speak(speech);
               }
             }, false);
@@ -181,6 +183,8 @@
               if (timerMessage) {
                 let minutesLeft = (secondsLeft/60).toString()
                 let speech = new SpeechSynthesisUtterance();
+                let voice = speechSynthesis.getVoices()[0];
+                speech.voice = voice;
                 speech.lang = "en-US";
                 speech.text = minutesLeft + " minutes until " + timerMessage;
                 speech.volume = 1;
