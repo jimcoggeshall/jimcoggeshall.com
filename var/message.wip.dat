@@ -29,5 +29,5 @@ iframe {
 }
 </style>
 <div class="outer" id="outer">
-<iframe allow="camera; microphone; fullscreen; display-capture" src="https://meet.coggeshall.io/public" style="height: 100%; width: 100%; border: 0px;"></iframe>
+<iframe allow="camera; microphone; fullscreen; display-capture" src="https://meet.coggeshall.io/public#config.disableDeepLinking=true" style="height: 100%; width: 100%; border: 0px;"></iframe>
 </div>
