@@ -13,6 +13,13 @@
       * {
         -webkit-text-size-adjust: none;
       }
+      .form-container {
+        display: flex;
+        margin: 50px;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-content: space-around;
+      }
       .text-container {
         display: flex;
         margin: 25px;
@@ -29,19 +36,19 @@
         justify-content: flex-start;
         align-content: space-around;
       }
-      button {
+      button, input[type=submit], input[type=text] {
         padding: 20px 20px;
         margin: 10px 10px 10px 10px;
         font-size: 24px;
       }
-      button:hover {
+      button:hover, input[type=submit]:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
       }
-      button:active {
+      button:active, input[type=submit]:active {
         box-shadow: 0;
         transform: translateY(4px);
       }
-      button:disabled {
+      button:disabled, input[type=submit]:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         pointer-events: none;
@@ -61,6 +68,12 @@
     <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
     <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
   </div>
+  <div class="flex-container form-container">
+    <form id="messageForm">
+      <input type="text" id="fmessage" name="fmessage" placeholder="Display a message" value=""><br>
+      <input type="submit" value="Set Message">
+    </form>
+  </div>
   <div class="flex-container text-container">
     <p id="timerState"></p>
   </div>
@@ -77,13 +90,6 @@
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="900">Add 15 minutes</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="1800">Add 30 minutes</button>
     <button data-mpayload="extendTimerNowEndsAt" data-timeadd="3600">Add 60 minutes</button>
-  </div>
-  <div class="flex-container button-container">
-    <form id="messageForm">
-      <label for="fmessage">Message:</label><br>
-      <input type="text" id="fmessage" name="fmessage" value=""><br>
-      <input type="submit" value="Submit">
-    </form>
   </div>
 
   <script>
