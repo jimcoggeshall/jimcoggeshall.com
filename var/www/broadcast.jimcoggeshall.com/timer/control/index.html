@@ -146,10 +146,9 @@
       ws.send(JSON.stringify(msg));
     }
 
-    messageButtons.forEach(button => {
-      if (!button.disabled) {
-        button.addEventListener("click", sendMessage);
-      }
+    const messageButtonsActive = document.querySelectorAll("[data-timeadd]");
+    messageButtonsActive.forEach(button => {
+      button.addEventListener("click", sendMessage);
     });
 
 
