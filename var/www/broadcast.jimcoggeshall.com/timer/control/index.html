@@ -65,7 +65,7 @@
 
 <body>
   <div class="flex-container button-container">
-    <button data-mpayload="clearTimer">Clear timer</button>
+    <button data-mpayload="clearTimer" id="cleartimerbutton" disabled>Clear timer</button>
     <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
     <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
   </div>
@@ -147,7 +147,9 @@
     }
 
     messageButtons.forEach(button => {
-      button.addEventListener("click", sendMessage);
+      if (button.enabled) {
+        button.addEventListener("click", sendMessage);
+      }
     });
 
 
@@ -176,11 +178,24 @@
       startWebsocket();
     }
     
+    function enableClearButton() {
+      let button = document.getElementById("cleartimerbutton");
+      button.disabled = false;
+      button.addEventListener("click", sendMessage);
+    }
+    
+    function disableClearButton() {
+      let button = document.getElementById("cleartimerbutton");
+      button.removeEventListener("click", sendMessage);
+      button.disabled = true;
+    }
+    
     function enableBellsButtons() {
       bellsButtons.forEach(button => {
         button.disabled = false;
         button.addEventListener("click", bellsMessage);
       });
+      enableClearButton();
     }
     
     function disableBellsButtons() {
@@ -188,6 +203,7 @@
         button.removeEventListener("click", bellsMessage);
         button.disabled = true;
       });
+      disableClearButton();
     }
     
     function enableMessageButtons() {    
