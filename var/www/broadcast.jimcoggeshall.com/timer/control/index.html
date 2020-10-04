@@ -11,7 +11,11 @@
     <link rel="icon" href="favicon.ico" />
     <style>
       * {
-        font-size: calc(1em + 0.25vw);
+        font-size: max(1em, 0.5vw);
+      }
+      .outer-container {
+        width: 100vw;
+        padding: 20vw;
       }
       .display-flex {
         display: flex;
@@ -39,7 +43,7 @@
         justify-content: flex-start;
         align-content: space-around;
       }
-      .button {
+      button {
         margin: 2vh 2vw;
       }
       form {
@@ -60,31 +64,33 @@
 </head>
 
 <body>
-  <div class="flex-container button-container">
-    <button data-mpayload="clearTimer" id="cleartimerbutton" disabled>Clear timer</button>
-    <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
-    <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
-  </div>
-  <div class="flex-container form-container">
-    <form id="messageForm">
-      <input type="text" id="fmessage" name="fmessage" placeholder="Display a message" value="">
-      <input type="submit" id="fsubmit" value="Set message" disabled>
-      <button id="clearMessage" disabled>Clear message</button>
-    </form>
-  </div>
-  <div class="flex-container text-container">
-    <iframe src="../../timer" scrolling="no" /></iframe>
-  </div>
-  <div class="flex-container button-container">
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="60">Add 1 minute</button>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="120">Add 2 minutes</button>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="180">Add 3 minutes</button>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="300">Add 5 minutes</button>
-    <hr>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="600">Add 10 minutes</button>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="900">Add 15 minutes</button>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="1800">Add 30 minutes</button>
-    <button data-mpayload="extendTimerNowEndsAt" data-timeadd="3600">Add 60 minutes</button>
+  <div class="outer-container">
+    <div class="flex-container button-container">
+      <button data-mpayload="clearTimer" id="cleartimerbutton" disabled>Clear timer</button>
+      <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
+      <button data-bpayload="disableWarningBells" disabled>Disable warning bells</button>
+    </div>
+    <div class="flex-container form-container">
+      <form id="messageForm">
+        <input type="text" id="fmessage" name="fmessage" placeholder="Display a message" value="">
+        <input type="submit" id="fsubmit" value="Set message" disabled>
+        <button id="clearMessage" disabled>Clear message</button>
+      </form>
+    </div>
+    <div class="flex-container text-container">
+      <iframe src="../../timer" scrolling="no" /></iframe>
+    </div>
+    <div class="flex-container button-container">
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="60">Add 1 minute</button>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="120">Add 2 minutes</button>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="180">Add 3 minutes</button>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="300">Add 5 minutes</button>
+      <hr>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="600">Add 10 minutes</button>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="900">Add 15 minutes</button>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="1800">Add 30 minutes</button>
+      <button data-mpayload="extendTimerNowEndsAt" data-timeadd="3600">Add 60 minutes</button>
+    </div>
   </div>
 
   <script>
