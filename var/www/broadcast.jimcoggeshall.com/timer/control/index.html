@@ -147,7 +147,7 @@
     }
 
     messageButtons.forEach(button => {
-      if (button.enabled) {
+      if (!button.disabled) {
         button.addEventListener("click", sendMessage);
       }
     });
