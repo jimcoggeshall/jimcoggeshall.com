@@ -54,6 +54,8 @@ for doc in TodaysPaper wsj sdut lat; do
     mv img /var/www/jimcoggeshall.com/papers/${doc}
     mv list.js /var/www/jimcoggeshall.com/papers/${doc}
     mv front.png /var/www/jimcoggeshall.com/papers/${doc}
+    
+    chmod -R 777 /var/www/jimcoggeshall.com/papers/${doc}
 
     popd
 
@@ -66,3 +68,6 @@ ln -sf ../papers/TodaysPaper/list.js
 rm -f img
 ln -sf ../papers/TodaysPaper/img 
 popd
+
+chmod -R 777 /var/www/jimcoggeshall.com/papers
+chmod -R 777 /var/www/jimcoggeshall.com/paper
