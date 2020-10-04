@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker-compose build
+docker-compose build --parallel
 docker-compose restart
-docker-compose up
+docker-compose up -d
 ./message.sh
