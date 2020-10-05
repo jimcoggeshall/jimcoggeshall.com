@@ -19,7 +19,7 @@
       }
       .flex-container {
         display: flex;
-        margin: 1vh 1vw;
+        margin: 2vh 1vw;
       }
       .form-container {
         display: flex;
@@ -85,7 +85,7 @@
     <div class="flex-container form-container">
       <form id="messageForm">
         <input type="text" id="fmessage" name="fmessage" placeholder="Display a message" value="">
-        <input type="submit" id="fsubmit" value="Set message" disabled>
+        <button id="setMessage" disabled>Set message</button>
         <button id="clearMessage" disabled>Clear message</button>
       </form>
     </div>
@@ -217,8 +217,9 @@
     }
     
     function enableMessageButtons() {    
-      var messageFormSubmit = document.getElementById("fsubmit");
-      messageFormSubmit.disabled = false;    
+      var setMessageButton = document.getElementById("setMessage");
+      setMessageButton.disabled = false;
+      setMessageButton.addEventListener("click", setTimerMessage);      
       var messageForm = document.getElementById("messageForm");
       messageForm.addEventListener("submit", setTimerMessage);      
       var clearMessageButton = document.getElementById("clearMessage");
@@ -230,8 +231,9 @@
       var clearMessageButton = document.getElementById("clearMessage");
       clearMessageButton.removeEventListener("click", clearTimerMessage);
       clearMessageButton.disabled = true;    
-      var messageFormSubmit = document.getElementById("fsubmit");
-      messageFormSubmit.disabled = true;    
+      var setMessageButton = document.getElementById("setMessage");
+      setMessageButton.disabled = true;
+      setMessageButton.removeEventListener("click", setTimerMessage);      
       var messageForm = document.getElementById("messageForm");
       messageForm.removeEventListener("submit", setTimerMessage);      
     }
