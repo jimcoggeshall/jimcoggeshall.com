@@ -6,7 +6,8 @@ sleep 60
 
 for doc in TodaysPaper wsj sdut lat; do
     pushd /
-    wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
+    #wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
+    wget -O https://cloud.jimcoggeshall.com/${doc}.pdf
 
     workdir=/$(uuidgen)/${doc}
 
