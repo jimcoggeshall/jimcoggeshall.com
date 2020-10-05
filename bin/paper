@@ -4,7 +4,7 @@ set -x
 
 sleep 60 
 
-for doc in TodaysPaper wsj sdut lat; do
+(for doc in TodaysPaper wsj sdut lat; do
     pushd /
     #wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
     wget -O https://cloud.jimcoggeshall.com/${doc}.pdf
@@ -61,7 +61,8 @@ for doc in TodaysPaper wsj sdut lat; do
     popd
 
     rm -rf "$workdir"
-done
+done) &
+wait
 
 pushd /var/www/jimcoggeshall.com/paper
 rm -f list.js
