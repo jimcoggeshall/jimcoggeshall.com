@@ -11,15 +11,15 @@
     <link rel="icon" href="favicon.ico" />
     <style>
       * {
-        font-size: max(1em, 0.5vw);
+        font-size: 1vw;
       }
       .outer-container {
-        width: 100vw;
-        padding: 5vw;
+        width: 90vw;
+        margin: 5vw;
       }
       .display-flex {
         display: flex;
-        margin: 1vh 0;
+        margin: 1vh 1vw;
       }
       .form-container {
         display: flex;
@@ -42,9 +42,6 @@
         justify-content: flex-start;
         align-content: space-around;
       }
-      button {
-        margin: 1vh 1vw;
-      }
       form {
         display: flex; 
       }
@@ -52,6 +49,10 @@
         opacity: 0.6;
         cursor: not-allowed;
         pointer-events: none;
+      }
+      button, input[type=submit], input[type=text] {
+        display: block;
+        margin: 1vh 1vw;
       }
       hr { 
         flex-basis: 100%; 
