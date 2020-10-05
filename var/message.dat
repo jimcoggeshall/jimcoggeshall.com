@@ -139,7 +139,7 @@ iframe {
         <iframe src="/timer" allow="autoplay" /></iframe>
       </div>
       <div class="grid-item grid-whiteboard">
-        <iframe src="https://wb.draw.coggeshall.io/public" allow="autoplay" /></iframe>
+        <iframe src="https://draw.coggeshall.io/?whiteboardid=public&hidetoolbar=true" allow="autoplay" /></iframe>
       </div>
     </div>
   </div>
