@@ -1,0 +1,187 @@
+<style>
+body {
+  background-color: #000000;
+  margin: 0px;
+  padding: 0px;
+}
+* {
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; 
+  pointer-events: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.display-grid {
+  box-sizing: border-box;
+  border: none;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 4fr 3fr 6fr;
+  grid-auto-flow: dense;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  align-items: space-evenly;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.grid-clock {
+  grid-column-start: 1; 
+  grid-column-end: 3; 
+  grid-row-start: 1; 
+  grid-row-end: 2;
+}
+.grid-news {
+  grid-column-start: 1; 
+  grid-column-end: 2; 
+  grid-row-start: 2; 
+  grid-row-end: 3;
+}
+.grid-timer {
+  grid-column-start: 2;
+  grid-column-end: 3; 
+  grid-row-start: 2; 
+  grid-row-end: 3;
+}
+.grid-paper {
+  grid-column-start: 3; 
+  grid-column-end: 4; 
+  grid-row-start: 1; 
+  grid-row-end: 3;
+  overflow: hidden;
+}
+@media screen and (max-aspect-ratio: 13/12) {
+  .display-grid {
+    box-sizing: border-box;
+    border: none;
+    display: grid;
+    grid-template-rows: 4fr 3fr 5fr;
+    grid-template-columns: 3fr 2fr;
+    grid-auto-flow: dense;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    align-items: space-evenly;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  .grid-clock {
+    grid-column-start: 1; 
+    grid-column-end: 3; 
+    grid-row-start: 1; 
+    grid-row-end: 2;
+  }
+  .grid-news {
+    grid-column-start: 1; 
+    grid-column-end: 2; 
+    grid-row-start: 2; 
+    grid-row-end: 3;
+  }
+  .grid-timer {
+    grid-column-start: 2; 
+    grid-column-end: 3; 
+    grid-row-start: 2; 
+    grid-row-end: 3;
+  }
+  .grid-paper {
+    grid-column-start: 1; 
+    grid-column-end: 3; 
+    grid-row-start: 3; 
+    grid-row-end: 4;
+    overflow: hidden;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .display-grid {
+    box-sizing: border-box;
+    border: none;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 7fr 5fr 5fr;
+    grid-auto-flow: dense;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    align-items: space-evenly;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  .grid-clock {
+    grid-column-start: 1; 
+    grid-column-end: 3; 
+    grid-row-start: 1; 
+    grid-row-end: 2;
+  }
+  .grid-news {
+    grid-column-start: 1; 
+    grid-column-end: 2; 
+    grid-row-start: 2; 
+    grid-row-end: 3;
+  }
+  .grid-timer {
+    grid-column-start: 2;
+    grid-column-end: 3; 
+    grid-row-start: 2; 
+    grid-row-end: 3;
+  }
+  .grid-paper {
+    grid-column-start: 3; 
+    grid-column-end: 4; 
+    grid-row-start: 1; 
+    grid-row-end: 3;
+    overflow: hidden;
+  }
+}
+.grid-item {
+  padding: 0;
+  margin: 0;
+  border: 1px solid white;
+}
+.outer {
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  text-align: center;
+}
+.middle {
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  transform: translate(-50%, -50%);
+  padding: 1%;
+  margin: 0;
+  border: none;
+  overflow: hidden;
+}
+</style>
+<div class="outer" id="outer">
+  <div class="middle" id="middle">
+    <div class="display-grid" style="height: 100%; width: 100%">
+      <div class="grid-item grid-clock"> 
+        <iframe src="/clock" allow="autoplay" /></iframe>
+      </div>
+      <div class="grid-item grid-news">
+        <iframe src="/news" allow="autoplay" /></iframe>
+      </div>
+      <div class="grid-item grid-timer">
+        <iframe src="/timer" allow="autoplay" /></iframe>
+      </div>
+      <div class="grid-item grid-paper">
+        <iframe src="/paper" allow="autoplay" /></iframe>
+      </div>
+    </div>
+  </div>
+</div>
