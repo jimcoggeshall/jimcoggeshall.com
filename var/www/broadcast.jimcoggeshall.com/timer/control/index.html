@@ -74,6 +74,9 @@
 
 <body>
   <div class="outer-container">
+    <div class="flex-container text-container">
+      <iframe src="../../timer" scrolling="no" /></iframe>
+    </div>
     <div class="flex-container button-container">
       <button data-mpayload="clearTimer" id="cleartimerbutton" disabled>Clear timer</button>
       <button data-bpayload="enableWarningBells" disabled>Enable warning bells</button>
@@ -85,9 +88,6 @@
         <input type="submit" id="fsubmit" value="Set message" disabled>
         <button id="clearMessage" disabled>Clear message</button>
       </form>
-    </div>
-    <div class="flex-container text-container">
-      <iframe src="../../timer" scrolling="no" /></iframe>
     </div>
     <div class="flex-container button-container">
       <button data-mpayload="extendTimerNowEndsAt" data-timeadd="60">Add 1 minute</button>
