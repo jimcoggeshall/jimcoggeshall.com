@@ -58,6 +58,7 @@ iframe {
   grid-row-start: 1; 
   grid-row-end: 3;
   overflow: hidden;
+  background-color: #FFFFFF;
 }
 @media screen and (max-aspect-ratio: 13/12) {
   .display-grid {
@@ -98,6 +99,7 @@ iframe {
     grid-row-start: 2; 
     grid-row-end: 4;
     overflow: hidden;
+    background-color: #FFFFFF;
   }
 }
 .grid-item {
