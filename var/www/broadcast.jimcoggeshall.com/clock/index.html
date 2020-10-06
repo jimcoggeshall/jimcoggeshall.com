@@ -37,7 +37,7 @@
         width: 100vw;
       }
       .date {
-        font-size: calc(max(1em, max(7vh, 5vw)));
+        font-size: calc(max(1em, 5vw));
       }
       .clock {
         font-size: calc(max(1em, max(15vh, 13vw)));
@@ -79,7 +79,7 @@
       }, 500);
 
       function render(m) {
-        document.getElementById("inner").style.fontSize = "calc(3em + 1vw)";
+        document.getElementById("inner").style.fontSize = "calc(max(1em, max(1vh, 1vw)))";
         document.getElementById("inner").style.lineHeight = "110%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
