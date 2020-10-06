@@ -85,17 +85,17 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
-        document.getElementById("inner").style.fontSize = "calc(10vw - 5vmin)";
-        document.getElementById("item-title").style.fontSize = "calc(min(1em, 9vw))";
+        document.getElementById("inner").style.fontSize = "calc(15vw - 5vmin)";
+        document.getElementById("item-title").style.fontSize = "calc(min(1em, 12vw))";
         document.getElementById("item-description").textContent = description;
-        document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 5vw))";
+        document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 7vw))";
         fixLayout();
       }
 
       function render(m) {
-        document.getElementById("inner").style.fontSize = "calc(10vw - 5vmin)";
-        document.getElementById("item-title").style.fontSize = "calc(min(1em, 9vw))";
-        document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 5vw))";
+        document.getElementById("inner").style.fontSize = "calc(15vw - 5vmin)";
+        document.getElementById("item-title").style.fontSize = "calc(min(1em, 12vw))";
+        document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 7vw))";
         document.getElementById("inner").style.lineHeight = "1.1";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
