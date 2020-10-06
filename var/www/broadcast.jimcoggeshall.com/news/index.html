@@ -85,15 +85,15 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
-        document.getElementById("item-title").style.fontSize = "10vw";
+        document.getElementById("item-title").style.fontSize = "calc(1em + 10vw)";
         document.getElementById("item-description").textContent = description;
-        document.getElementById("item-description").style.fontSize = "5vw";
+        document.getElementById("item-description").style.fontSize = "calc(1em + 5vw)";
         fixLayout();
       }
 
       function render(m) {
-        document.getElementById("item-title").style.fontSize = "10vw";
-        document.getElementById("item-description").style.fontSize = "5vw";
+        document.getElementById("item-title").style.fontSize = "calc(1em + 10vw)";
+        document.getElementById("item-description").style.fontSize = "calc(1em + 5vw)";
         document.getElementById("inner").style.lineHeight = "1.1";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
