@@ -85,15 +85,15 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
-        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(3vh, 9vw)))";
+        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(5vh, 9vw)))";
         document.getElementById("item-description").textContent = description;
-        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(1vh, 5vw)))";
+        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(3vh, 5vw)))";
         fixLayout();
       }
 
       function render(m) {
-        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(3vh, 9vw)))";
-        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(1vh, 5vw)))";
+        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(5vh, 9vw)))";
+        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(3vh, 5vw)))";
         document.getElementById("inner").style.lineHeight = "1.1";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
@@ -106,6 +106,12 @@
           let style = window.getComputedStyle(document.getElementById("inner"), null);
           let cfs = style.getPropertyValue("font-size");
           document.getElementById("inner").style.fontSize = 0.95*cfs.replace("px", "") + "px";
+          let titleStyle = window.getComputedStyle(document.getElementById("item-title"), null);
+          let titleCfs = style.getPropertyValue("font-size");
+          document.getElementById("item-title").style.fontSize = 0.95*titleCfs.replace("px", "") + "px";
+          let descriptionStyle = window.getComputedStyle(document.getElementById("item-description"), null);
+          let descriptionCfs = style.getPropertyValue("font-size");
+          document.getElementById("item-description").style.fontSize = 0.95*descriptionCfs.replace("px", "") + "px";
           document.getElementById("inner").innerHTML = m;
         }
       }
