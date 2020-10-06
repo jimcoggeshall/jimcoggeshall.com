@@ -112,7 +112,9 @@
       }
 
       function fitVertical(m) {
-        while (document.getElementById("inner").scrollHeight > window.innerHeight) {
+        let maxIterations = 20;
+        let i = 0;
+        while (document.getElementById("inner").scrollHeight > window.innerHeight && i++ < maxIterations) {
           let style = window.getComputedStyle(document.getElementById("inner"), null);
           let cfs = style.getPropertyValue("font-size");
           document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
@@ -121,7 +123,9 @@
       }
       
       function fitHorizontal(m) {
-        while (document.getElementById("inner").scrollWidth > window.innerWidth) {
+        let maxIterations = 20;
+        let i = 0;
+        while (document.getElementById("inner").scrollWidth > window.innerWidth && i++ < maxIterations) {
           let style = window.getComputedStyle(document.getElementById("inner"), null);
           let cfs = style.getPropertyValue("font-size");
           document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";

@@ -37,10 +37,10 @@
         width: 100vw;
       }
       .date {
-        font-size: 5vw;
+        font-size: calc(max(1em, max(7vh, 5vw)));
       }
       .clock {
-        font-size: 13vw;
+        font-size: calc(max(1em, max(15vh, 13vw)));
         font-variant-numeric: tabular-nums;
         font-feature-settings: "tnum";
         font-kerning: none;
@@ -86,17 +86,14 @@
       }
 
       function renderSafe(m) {
-        document.getElementById("inner").style.fontSize = "calc(3em + 1vmin)";
+        document.getElementById("inner").style.fontSize = "calc(min(1em + 1vmin))";
         document.getElementById("inner").innerHTML = m;
       }
 
       function fitVertical(m) {
+        let maxIterations = 20;
         let i = 0;
-        while (document.getElementById("inner").scrollHeight > window.innerHeight) {
-          if (i++ > 10) {
-            document.getElementById("inner").innerHTML = m;
-            return;
-          }
+        while (document.getElementById("inner").scrollHeight > window.innerHeight && i++ < maxIterations) {
           let style = window.getComputedStyle(document.getElementById("inner"), null);
           let cfs = style.getPropertyValue("font-size");
           document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
