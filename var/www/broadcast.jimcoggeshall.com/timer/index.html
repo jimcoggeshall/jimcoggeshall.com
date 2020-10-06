@@ -106,8 +106,8 @@
     document.getElementById("thetime").style.color = "white";
     document.getElementById("thehour").style.color = "white";
     document.getElementById("thebells").style.fontSize = "calc(max(1em, max(1vh, 0.5vw)))";
-    document.getElementById("themessage").style.fontSize = "calc(max(1em, max(9vh, 8vw)))";
-    document.getElementById("thetime").style.fontSize = "calc(max(1em, max(10vh, 12vw)))";
+    document.getElementById("themessage").style.fontSize = "calc(max(1em, max(3vh, 8vw)))";
+    document.getElementById("thetime").style.fontSize = "calc(max(1em, max(4vh, 12vw)))";
     document.getElementById("thehour").style.fontSize = "calc(max(1em, max(1vh, 0.5vw)))";
 
     var sendClearTimeout;
@@ -329,8 +329,8 @@
     }
 
     function renderInner(m) {
-      document.getElementById("themessage").style.fontSize = "calc(max(1em, max(9vh, 8vw)))";
-      document.getElementById("thetime").style.fontSize = "calc(max(1em, max(10vh, 12vw)))";
+      document.getElementById("themessage").style.fontSize = "calc(max(1em, max(3vh, 8vw)))";
+      document.getElementById("thetime").style.fontSize = "calc(max(1em, max(4vh, 12vw)))";
       document.getElementById("thehour").style.fontSize = "calc(max(1em, max(1vh, 0.5vw)))";
       document.getElementById("inner").style.lineHeight = "120%";
       document.getElementById("inner").innerHTML = m;
