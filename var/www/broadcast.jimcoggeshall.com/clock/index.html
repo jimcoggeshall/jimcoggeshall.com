@@ -30,6 +30,7 @@
         padding: 0vh 5vw 0vh 5vw;
         margin: 0px;
         border: 0px;
+        font-size: calc(max(20vw - 5vmax, 10vmax));
       }
       .outer {
         color: white;
@@ -37,10 +38,10 @@
         width: 100vw;
       }
       .date {
-        font-size: calc(max(1em, 5vw));
+        font-size: calc(min(2em, 15vw));
       }
       .clock {
-        font-size: calc(max(1em, max(15vh, 13vw)));
+        font-size: calc(min(3em, 20vw));
         font-variant-numeric: tabular-nums;
         font-feature-settings: "tnum";
         font-kerning: none;
@@ -79,7 +80,7 @@
       }, 500);
 
       function render(m) {
-        document.getElementById("inner").style.fontSize = "calc(max(1em, max(1vh, 1vw)))";
+        document.getElementById("inner").style.fontSize = "calc(max(20vw - 5vmax, 10vmax))";
         document.getElementById("inner").style.lineHeight = "110%";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
