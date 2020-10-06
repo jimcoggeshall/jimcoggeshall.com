@@ -85,15 +85,15 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
-        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(15vh, 10vw)))";
+        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(5vh, 15vw)))";
         document.getElementById("item-description").textContent = description;
-        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(7vh, 5vw)))";
+        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(3vh, 5vw)))";
         fixLayout();
       }
 
       function render(m) {
-        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(7vh, 10vw)))";
-        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(4vh, 5vw)))";
+        document.getElementById("item-title").style.fontSize = "calc(max(0.5em, max(5vh, 15vw)))";
+        document.getElementById("item-description").style.fontSize = "calc(max(0.5em, max(3vh, 5vw)))";
         document.getElementById("inner").style.lineHeight = "1.1";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
