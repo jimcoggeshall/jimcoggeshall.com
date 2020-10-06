@@ -85,7 +85,7 @@
       
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
-        document.getElementById("inner").style.fontSize = "calc(20vw - 5vmin)";
+        document.getElementById("inner").style.fontSize = "calc(max(20vw - 5vmax, 10vmax))";
         document.getElementById("item-title").style.fontSize = "calc(min(1em, 20vw))";
         document.getElementById("item-description").textContent = description;
         document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 10vw))";
@@ -93,7 +93,7 @@
       }
 
       function render(m) {
-        document.getElementById("inner").style.fontSize = "calc(20vw - 5vmin)";
+        document.getElementById("inner").style.fontSize = "calc(max(20vw - 5vmax, 10vmax))";
         document.getElementById("item-title").style.fontSize = "calc(min(1em, 20vw))";
         document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 10vw))";
         document.getElementById("inner").style.lineHeight = "1.1";
@@ -104,7 +104,7 @@
       function fitVertical(m) {
         let maxIterations = 100;
         let i = 0;
-        while (1.4*document.getElementById("inner").scrollHeight > window.innerHeight && i++ < maxIterations) {
+        while (document.getElementById("inner").scrollHeight > window.innerHeight && i++ < maxIterations) {
           let style = window.getComputedStyle(document.getElementById("inner"), null);
           let cfs = style.getPropertyValue("font-size");
           document.getElementById("inner").style.fontSize = 0.95*cfs.replace("px", "") + "px";
