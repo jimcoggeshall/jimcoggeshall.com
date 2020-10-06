@@ -62,7 +62,7 @@
         font-kerning: none;
       }
       .display-message {
-        line-height: 1.1;
+        line-height: 1.5;
       }
       .outer-timer {
         height: 100vh;
@@ -105,10 +105,10 @@
     document.getElementById("themessage").style.color = "white";
     document.getElementById("thetime").style.color = "white";
     document.getElementById("thehour").style.color = "white";
-    document.getElementById("thebells").style.fontSize = "calc(1em + max(1em, max(1vh, 2vw)))";
-    document.getElementById("themessage").style.fontSize = "calc(1em + max(1em, max(4vh, 8vw)))";
-    document.getElementById("thetime").style.fontSize = "calc(1em + max(1em, max(5vh, 12vw)))";
-    document.getElementById("thehour").style.fontSize = "calc(1em + max(1em, max(1vh, 2vw)))";
+    document.getElementById("thebells").style.fontSize = "calc(1em + 0.5vw)";
+    document.getElementById("themessage").style.fontSize = "calc(3em + 1vw)";
+    document.getElementById("thetime").style.fontSize = "calc(5em + 1.5vw)";
+    document.getElementById("thehour").style.fontSize = "calc(1em + 0.5vw)";
 
     var sendClearTimeout;
 
@@ -329,9 +329,9 @@
     }
 
     function renderInner(m) {
-      document.getElementById("themessage").style.fontSize = "calc(1em + max(1em, max(4vh, 8vw)))";
-      document.getElementById("thetime").style.fontSize = "calc(1em + max(1em, max(5vh, 12vw)))";
-      document.getElementById("thehour").style.fontSize = "calc(1em + max(1em, max(1vh, 2vw)))";
+      document.getElementById("themessage").style.fontSize = "calc(3em + 1vw)";
+      document.getElementById("thetime").style.fontSize = "calc(5em + 1.5vw)";
+      document.getElementById("thehour").style.fontSize = "calc(1em + 0.5vw)";
       document.getElementById("inner").style.lineHeight = "120%";
       document.getElementById("inner").innerHTML = m;
       fitVerticalInner(m);
@@ -339,9 +339,7 @@
     }
 
     function fitVerticalInner(m) {
-      let maxIterations = 20;
-      let i = 0;
-      while (document.getElementById("inner").scrollHeight > window.innerHeight && i++ < maxIterations) {
+      while (document.getElementById("inner").scrollHeight > window.innerHeight) {
         let style = window.getComputedStyle(document.getElementById("inner"), null);
         let cfs = style.getPropertyValue("font-size");
         document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
@@ -350,9 +348,7 @@
     }
     
     function fitHorizontalInner(m) {
-      let maxIterations = 20;
-      let i = 0;
-      while (document.getElementById("inner").scrollWidth > window.innerWidth && i++ < maxIterations) {
+      while (document.getElementById("inner").scrollWidth > window.innerWidth) {
         let style = window.getComputedStyle(document.getElementById("inner"), null);
         let cfs = style.getPropertyValue("font-size");
         document.getElementById("inner").style.fontSize = 0.8*cfs.replace("px", "") + "px";
@@ -362,7 +358,7 @@
 
 
     function renderOuter(m) {
-      document.getElementById("outer").style.fontSize = "calc(max(1em, 1vw))";
+      document.getElementById("outer").style.fontSize = "calc(1em + 1vw)";
       document.getElementById("outer").style.lineHeight = "120%";
       document.getElementById("outer").innerHTML = m;
       fitVerticalOuter(m);
@@ -370,9 +366,7 @@
     }
 
     function fitVerticalOuter(m) {
-      let maxIterations = 20;
-      let i = 0;
-      while (document.getElementById("outer").scrollHeight > window.innerHeight && i++ < maxIterations) {
+      while (document.getElementById("outer").scrollHeight > window.innerHeight) {
         let style = window.getComputedStyle(document.getElementById("outer"), null);
         let cfs = style.getPropertyValue("font-size");
         document.getElementById("outer").style.fontSize = 0.8*cfs.replace("px", "") + "px";
@@ -381,9 +375,7 @@
     }
     
     function fitHorizontalOuter(m) {
-      let maxIterations = 20;
-      let i = 0;
-      while (document.getElementById("outer").scrollWidth > window.innerWidth && i++ < maxIterations) {
+      while (document.getElementById("outer").scrollWidth > window.innerWidth) {
         let style = window.getComputedStyle(document.getElementById("outer"), null);
         let cfs = style.getPropertyValue("font-size");
         document.getElementById("outer").style.fontSize = 0.8*cfs.replace("px", "") + "px";
