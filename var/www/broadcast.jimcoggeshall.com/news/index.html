@@ -100,7 +100,7 @@
       }
 
       function fitVertical(m) {
-        let maxIterations = 20;
+        let maxIterations = 50;
         let i = 0;
         while (document.getElementById("inner").scrollHeight > window.innerHeight && i++ < maxIterations) {
           let style = window.getComputedStyle(document.getElementById("inner"), null);
