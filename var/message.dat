@@ -6,6 +6,11 @@ body {
 }
 * {
   user-select: none;
+  pointer-events: none;
+  touch-action: none;
+  pointer: none;
+  cursor: none;
+  scroll-behavior: unset;
   -webkit-text-size-adjust: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -15,10 +20,6 @@ iframe {
   height: 100%;
   width: 100%;
   overflow: hidden; 
-  pointer-events: none;
-  touch-action: none;
-  cursor: none;
-  scroll-behavior: unset;
   border: none;
   margin: 0;
   padding: 0;
