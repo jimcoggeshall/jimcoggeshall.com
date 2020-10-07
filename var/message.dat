@@ -17,6 +17,8 @@ iframe {
   overflow: hidden; 
   pointer-events: none;
   touch-action: none;
+  cursor: none;
+  scroll-behavior: unset;
   border: none;
   margin: 0;
   padding: 0;
