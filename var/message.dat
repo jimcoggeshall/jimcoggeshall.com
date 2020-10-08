@@ -159,7 +159,7 @@ iframe {
 }
 .grid-item {
   padding: 0;
-  margin: 0;
+  margin: 5px;
   border: 1px solid white;
 }
 .outer {
