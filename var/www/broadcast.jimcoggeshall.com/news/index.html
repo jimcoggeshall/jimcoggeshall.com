@@ -86,16 +86,16 @@
       function renderItem(title, description) {
         document.getElementById("item-title").textContent = title;
         document.getElementById("inner").style.fontSize = "calc(max(20vw - 5vmax, 10vmax))";
-        document.getElementById("item-title").style.fontSize = "calc(min(0.5em, 20vw))";
+        document.getElementById("item-title").style.fontSize = "calc(min(1em, 20vw))";
         document.getElementById("item-description").textContent = description;
-        document.getElementById("item-description").style.fontSize = "calc(min(0.25em, 10vw))";
+        document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 10vw))";
         fixLayout();
       }
 
       function render(m) {
         document.getElementById("inner").style.fontSize = "calc(max(20vw - 5vmax, 10vmax))";
-        document.getElementById("item-title").style.fontSize = "calc(min(0.5em, 20vw))";
-        document.getElementById("item-description").style.fontSize = "calc(min(0.25em, 10vw))";
+        document.getElementById("item-title").style.fontSize = "calc(min(1em, 20vw))";
+        document.getElementById("item-description").style.fontSize = "calc(min(0.5em, 10vw))";
         document.getElementById("inner").style.lineHeight = "1.1";
         document.getElementById("inner").innerHTML = m;
         fitVertical(m);
