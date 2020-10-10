@@ -179,6 +179,14 @@
         }
       });
     }
+    
+    function cacheNextPage() {
+      var newImage = pages[1].image;
+      var newImageSrc = pages[1].source;
+      if (newImage.src !== newImageSrc) {
+        newImage.src = newImageSrc;
+      }
+    }
 
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
@@ -198,6 +206,7 @@
         newImage.src = newImageSrc;
       }
       imageDiv.appendChild(newImage);
+      cacheNextPage();
     }
 
     function nextImage() {
