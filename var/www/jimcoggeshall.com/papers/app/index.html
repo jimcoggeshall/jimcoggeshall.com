@@ -190,7 +190,6 @@
 
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
-      window.scrollTo(0, 0);
     }
 
     function newPage() {
@@ -235,6 +234,11 @@
         case "ArrowLeft":
           prevImage();
           break;
+        case "Down":
+          window.scrollBy(0, -50);
+          break;
+        case "Up":
+          window.scrollBy(0, 50);
         default:
           break;
       }
