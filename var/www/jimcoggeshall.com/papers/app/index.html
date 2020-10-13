@@ -258,7 +258,7 @@
     function detectSwipe(handleSwipe) {
       var navdir = "None";
       var swipedir = "None";
-      var startX, startY, distX, distY, elapsedTime, startTime;
+      var startX, startY, startYOffset, distX, distY, distYOffset, elapsedTime, startTime;
       var minDistance = 50;
       var maxDistance = 100;
       var maxDistanceVertical = 50;
@@ -296,6 +296,7 @@
         dist = 0;
         startX = touchobj.pageX;
         startY = touchobj.pageY;
+        startYOffset = window.pageYOffset;
         startTime = new Date().getTime();
         e.preventDefault();
       }, false);
@@ -304,22 +305,22 @@
         var touchobj = e.changedTouches[0];
         distX = touchobj.pageX - startX;
         distY = touchobj.pageY - startY;
+        distYOffset = window.pageYOffset - startYOffset;
         elapsedTime = new Date().getTime() - startTime;
         if (elapsedTime <= allowedTime) {
           if (Math.abs(distX) >= minDistance && Math.abs(distY) <= maxDistanceVertical) {
             swipedir = (distX < 0) ? "Left" : "Right";
-          }
-          else if (Math.abs(distY) >= minDistance && Math.abs(distX) <= maxDistance) {
+          } else if (Math.abs(distY) >= minDistance && Math.abs(distX) <= maxDistance) {
             swipedir = (distY < 0) ? "Up" : "Down";
+          } else if (Math.abs(distYOffset) >= 0) {
+            swipedir = "Scroll";
           } else {
             swipedir = "Tap";
             if (navdir == "Right") {
               swipedir = "Left";
-            }
-            else if (navdir == "Left") {
+            } else if (navdir == "Left") {
               swipedir = "Right";
-            }
-            else if (navdir == "Close") {
+            } else if (navdir == "Close") {
               swipedir = "Close";
             }
           }
@@ -371,6 +372,7 @@
           break;
         case "Up":
         case "Down":
+        case "Scroll":
         case "None":
           break;
         case "Tap":
