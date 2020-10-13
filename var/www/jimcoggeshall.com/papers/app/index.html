@@ -209,11 +209,13 @@
     }
 
     function nextImage() {
+      window.scrollTo(0, 0);
       pages.push(pages.shift());
       newPage();
     }
 
     function prevImage() {
+      window.scrollTo(0, 0);
       pages.unshift(pages.pop());
       newPage();
     }
@@ -235,10 +237,10 @@
           prevImage();
           break;
         case "ArrowDown":
-          window.scrollBy(0, 50);
+          window.scrollBy(0, 100);
           break;
         case "ArrowUp":
-          window.scrollBy(0, -50);
+          window.scrollBy(0, -100);
           break;
         default:
           break;
