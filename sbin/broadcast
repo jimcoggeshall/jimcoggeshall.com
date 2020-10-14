@@ -29,7 +29,7 @@ class Messenger:
 
     async def _receive_message(self):
         now = datetime.datetime.now()
-        if (now - self._recent_fetch).total_seconds() < 45:
+        if (now - self._recent_fetch).total_seconds() < 90:
             return
         with await self._lock:
             self._fetch_message_now()

@@ -64,14 +64,14 @@
             renderArray([am[0]]);
             messageTimeout = setTimeout(function() {
               renderArray(am);
-            }, 17000);
+            }, 20000);
           }
         };
       }
       
       function resetTimeout() {
         clearTimeout(wsManualTimeout);
-        wsManualTimeout = setTimeout(() => restartWebsocket(), 60000);
+        wsManualTimeout = setTimeout(() => restartWebsocket(), 120000);
       }
       
       function restartWebsocket() {
