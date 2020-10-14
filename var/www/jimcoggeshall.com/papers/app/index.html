@@ -10,6 +10,10 @@
     <link rel="icon" href="favicon.ico" />
     <body style="background-color:#FFFFFF; margin:0px; padding:0px">
     <style>
+      .container {
+        height: 100vh;
+        width: 100vw;
+      }
       .center {
         display: block;
         height: auto;
@@ -20,7 +24,8 @@
         margin-right: auto;
       }
       .vcenter {
-        top: 50vh;
+        position: absolute;
+        top: 50%
         transform: translateY(-50%);
         -ms-transform: translateY(-50%);
       }
@@ -145,6 +150,7 @@
   </head>
 
   <body>
+    <div class="container">
     <div id="overlay">
       <div id="text">Loading...</div>
     </div>
@@ -158,11 +164,11 @@
       <div id="rightArrow" href="#">&#10097;</div>
     </div>
     <div id="im"></div>
+    </div>
   </body>
 
   <script src="list.js"></script>
   <script>
-  
   
     function toPx(instr) {
       return Math.max(Math.round(1.0*instr.replace("px", "")) - 1, 0);
