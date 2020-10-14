@@ -22,7 +22,7 @@
       .vcenter {
         top: 50%;
         transform: translateY(-50%);
-        -ms-transform: translate(-50%);
+        -ms-transform: translateY(-50%);
       }
       #topLeft {
         position: fixed;
@@ -162,6 +162,22 @@
 
   <script src="list.js"></script>
   <script>
+  
+  
+    function toPx(instr) {
+      return Math.max(Math.round(1.0*instr.replace("px", "")) - 1, 0);
+    }
+
+    function totalHeight() {
+      var ims = window.getComputedStyle(document.getElementById("im"));
+      var computedTotalHeight = toPx(ims.getPropertyValue("margin-top")) + toPx(ims.getPropertyValue("margin-bottom")) + toPx(ims.getPropertyValue("height"));
+      return computedTotalHeight;
+    }
+
+    function totalVerticalScroll() {
+      var computedTotalHeight = totalHeight();
+      return Math.max(computedTotalHeight - window.innerHeight, 0);
+    }
 
     const referrer = document.referrer;
     var navTimeout;
@@ -211,7 +227,7 @@
         newImage.src = newImageSrc;
       }
       imageDiv.appendChild(newImage);
-      if (imageDiv.scrollHeight < window.innerHeight) {
+      if (totalVerticalScroll() === 0) {
         imageDiv.classList.add("vcenter");
       }
       cacheNextPage();
