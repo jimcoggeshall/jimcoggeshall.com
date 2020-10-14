@@ -10,6 +10,10 @@
     <link rel="icon" href="favicon.ico" />
     <body style="background-color:#FFFFFF; margin:0px; padding:0px">
     <style>
+      .outer {
+        height: 100vh;
+        width: 100vw;
+      }
       .center {
         display: block;
         height: auto;
@@ -18,6 +22,11 @@
         margin-bottom: 1vh;
         margin-left: auto;
         margin-right: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
       }
       #topLeft {
         position: fixed;
@@ -140,19 +149,21 @@
   </head>
 
   <body>
-    <div id="overlay">
-      <div id="text">Loading...</div>
+    <div id="outer" class="outer">
+      <div id="overlay">
+        <div id="text">Loading...</div>
+      </div>
+      <div id="topLeft">
+        <div id="topLeftIcon" href="#">&#10005;</div>
+      </div>
+      <div id="left">
+        <div id="leftArrow" href="#">&#10096;</div>
+      </div>
+      <div id="right">
+        <div id="rightArrow" href="#">&#10097;</div>
+      </div>
+      <div id="im"></div>
     </div>
-    <div id="topLeft">
-      <div id="topLeftIcon" href="#">&#10005;</div>
-    </div>
-    <div id="left">
-      <div id="leftArrow" href="#">&#10096;</div>
-    </div>
-    <div id="right">
-      <div id="rightArrow" href="#">&#10097;</div>
-    </div>
-    <div id="im"></div>
   </body>
 
   <script src="list.js"></script>
