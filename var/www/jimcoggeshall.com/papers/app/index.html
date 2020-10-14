@@ -319,8 +319,6 @@
             swipedir = (distX < 0) ? "Left" : "Right";
           } else if (Math.abs(distY) >= minDistance && Math.abs(distX) <= maxDistance) {
             swipedir = (distY < 0) ? "Up" : "Down";
-          } else if (Math.abs(distYOffset) >= 0) {
-            swipedir = "Scroll";
           } else {
             swipedir = "Tap";
             if (navdir == "Right") {
@@ -331,6 +329,8 @@
               swipedir = "Close";
             }
           }
+        } else if (Math.abs(distYOffset) >= 0) {
+          swipedir = "Scroll";
         }
         handleSwipe(swipedir);
         e.preventDefault();
