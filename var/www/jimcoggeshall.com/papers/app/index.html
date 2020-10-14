@@ -215,8 +215,8 @@
 
     function newPage() {
       var imageDiv = document.getElementById("im");
-      imageDiv.classList.remove("vcenter");
       while (imageDiv.firstChild) {
+        imageDiv.firstChild.classList.remove("vcenter");
         imageDiv.removeChild(imageDiv.firstChild);
       }
       document.getElementById("overlay").style.display = "inline-block";
@@ -228,7 +228,9 @@
       }
       imageDiv.appendChild(newImage);
       if (totalVerticalScroll() === 0) {
-        imageDiv.classList.add("vcenter");
+        imageDiv.removeChild(newImage);
+        newImage.classList.add("vcenter");
+        imageDiv.appendChild(newImage);
       }
       cacheNextPage();
     }
