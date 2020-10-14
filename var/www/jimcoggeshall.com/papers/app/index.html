@@ -211,12 +211,16 @@
 
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
+      var imageDiv = document.getElementById("im");
+      imageDiv.classList.remove("vcenter");
+      if (totalVerticalScroll() === 0) {
+        imageDiv.classList.add("vcenter");
+      }      
     }
 
     function newPage() {
       var imageDiv = document.getElementById("im");
       while (imageDiv.firstChild) {
-        imageDiv.firstChild.classList.remove("vcenter");
         imageDiv.removeChild(imageDiv.firstChild);
       }
       document.getElementById("overlay").style.display = "inline-block";
@@ -227,11 +231,6 @@
         newImage.src = newImageSrc;
       }
       imageDiv.appendChild(newImage);
-      if (totalVerticalScroll() === 0) {
-        imageDiv.removeChild(newImage);
-        newImage.classList.add("vcenter");
-        imageDiv.appendChild(newImage);
-      }
       cacheNextPage();
     }
 
