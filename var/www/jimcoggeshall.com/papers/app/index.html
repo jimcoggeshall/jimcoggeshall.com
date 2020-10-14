@@ -10,19 +10,19 @@
     <link rel="icon" href="favicon.ico" />
     <body style="background-color:#FFFFFF; margin:0px; padding:0px">
     <style>
-      .outer {
-        height: 100vh;
-        width: 100vw;
-      }
       .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow-y: scroll;
-        width: 100%;
+        display: block;
         height: auto;
+        width: 100vw;
+        margin-top: 2vh;
+        margin-bottom: 1vh;
         margin-left: auto;
         margin-right: auto;
+      }
+      .vcenter {
+        top: 50%;
+        transform: translateY(-50%);
+        -ms-transform: translate(-50%);
       }
       #topLeft {
         position: fixed;
@@ -145,21 +145,19 @@
   </head>
 
   <body>
-    <div id="outer" class="outer">
-      <div id="overlay">
-        <div id="text">Loading...</div>
-      </div>
-      <div id="topLeft">
-        <div id="topLeftIcon" href="#">&#10005;</div>
-      </div>
-      <div id="left">
-        <div id="leftArrow" href="#">&#10096;</div>
-      </div>
-      <div id="right">
-        <div id="rightArrow" href="#">&#10097;</div>
-      </div>
-      <div id="im"></div>
+    <div id="overlay">
+      <div id="text">Loading...</div>
     </div>
+    <div id="topLeft">
+      <div id="topLeftIcon" href="#">&#10005;</div>
+    </div>
+    <div id="left">
+      <div id="leftArrow" href="#">&#10096;</div>
+    </div>
+    <div id="right">
+      <div id="rightArrow" href="#">&#10097;</div>
+    </div>
+    <div id="im"></div>
   </body>
 
   <script src="list.js"></script>
@@ -201,6 +199,7 @@
 
     function newPage() {
       var imageDiv = document.getElementById("im");
+      imageDiv.classList.remove("vcenter");
       while (imageDiv.firstChild) {
         imageDiv.removeChild(imageDiv.firstChild);
       }
@@ -212,6 +211,9 @@
         newImage.src = newImageSrc;
       }
       imageDiv.appendChild(newImage);
+      if (imageDiv.scrollHeight < window.innerHeight) {
+        imageDiv.classList.add("vcenter");
+      }
       cacheNextPage();
     }
 
