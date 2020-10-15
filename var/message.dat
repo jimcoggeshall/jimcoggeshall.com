@@ -212,7 +212,12 @@ iframe {
   function loadWhiteboard() {
     var wbFrame = document.getElementById("wbframe");
     if (!wbFrame.hasAttribute("src")) {
-      wbFrame.setAttribute("src", "https://draw.coggeshall.io/boards/public#0,0,0.5");
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var meanDimension = (width + height)/2;
+      var scaleFactor = Math.max(Math.min(meanDimension/1000, 1.0), 0.3);
+      var url = "https://draw.coggeshall.io/boards/public#0,0," + scaleFactor.toString();
+      wbFrame.setAttribute("src", url);
     }
   }
   loadWhiteboard();
