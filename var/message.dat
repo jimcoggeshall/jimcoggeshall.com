@@ -203,7 +203,7 @@ iframe {
         <iframe class="typeset-frame" src="/timer" allow="autoplay" /></iframe>
       </div>
       <div class="grid-item grid-whiteboard">
-        <iframe src="https://wb.draw.coggeshall.io/public#0,0,1.0" /></iframe>
+        <iframe src="https://draw.coggeshall.io/boards/public#0,0,0.5" /></iframe>
       </div>
     </div>
   </div>
