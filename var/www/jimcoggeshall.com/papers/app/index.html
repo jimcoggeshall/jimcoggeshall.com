@@ -17,7 +17,7 @@
       .center {
         display: block;
         height: auto;
-        width: 100vw;
+        width: 100%;
         margin-top: 2vh;
         margin-bottom: 1vh;
         margin-left: auto;
@@ -192,6 +192,7 @@
     var pagesSrc = pagesOrig.slice(0, -1);
     var pages = pagesSrc.map((source) => {
       var image = new Image();
+      imageDiv.classList.add("center");
       return {
         "source": source,
         "image": image
