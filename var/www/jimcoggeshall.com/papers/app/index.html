@@ -25,6 +25,8 @@
       }
       .vcenter {
         position: absolute;
+        display: inline-block;
+        width: 100vw;
         top: 50%
         transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -151,19 +153,19 @@
 
   <body>
     <div class="container">
-    <div id="overlay">
-      <div id="text">Loading...</div>
-    </div>
-    <div id="topLeft">
-      <div id="topLeftIcon" href="#">&#10005;</div>
-    </div>
-    <div id="left">
-      <div id="leftArrow" href="#">&#10096;</div>
-    </div>
-    <div id="right">
-      <div id="rightArrow" href="#">&#10097;</div>
-    </div>
-    <div id="im"></div>
+      <div id="overlay">
+        <div id="text">Loading...</div>
+      </div>
+      <div id="topLeft">
+        <div id="topLeftIcon" href="#">&#10005;</div>
+      </div>
+      <div id="left">
+        <div id="leftArrow" href="#">&#10096;</div>
+      </div>
+      <div id="right">
+        <div id="rightArrow" href="#">&#10097;</div>
+      </div>
+      <div id="im"></div>
     </div>
   </body>
 
@@ -190,7 +192,6 @@
     var pagesSrc = pagesOrig.slice(0, -1);
     var pages = pagesSrc.map((source) => {
       var image = new Image();
-      image.classList.add("center");
       return {
         "source": source,
         "image": image
@@ -218,8 +219,8 @@
     function newPageLoaded() {
       document.getElementById("overlay").style.display = "none";
       var imageDiv = document.getElementById("im");
-      imageDiv.classList.remove("vcenter");
       if (totalVerticalScroll() === 0) {
+        imageDiv.classList.remove("center");
         imageDiv.classList.add("vcenter");
       }      
     }
@@ -232,6 +233,8 @@
       document.getElementById("overlay").style.display = "inline-block";
       var newImage = pages[0].image;
       var newImageSrc = pages[0].source;
+      imageDiv.classList.remove("vcenter");
+      imageDiv.classList.add("center");
       newImage.addEventListener("load", newPageLoaded, {once: true});
       if (newImage.src !== newImageSrc) {
         newImage.src = newImageSrc;
