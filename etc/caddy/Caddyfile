@@ -37,3 +37,13 @@ broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
         }
     }
 }
+
+draw.jimcoggeshall.com {
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        -Server
+    }
+    route {
+        reverse_proxy localhost:8080
+    }
+}
