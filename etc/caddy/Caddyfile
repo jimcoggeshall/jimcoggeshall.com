@@ -27,6 +27,10 @@ broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
         +Content-Security-Policy "frame-src 'self' draw.coggeshall.io"
         -Server
     }
+    route /draw/* {
+        uri strip_prefix /draw
+        reverse_proxy localhost:8080
+    }
     route {
         reverse_proxy /ws* ws://127.0.0.1:8888
         reverse_proxy /timer/ws* ws://127.0.0.1:8889
