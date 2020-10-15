@@ -209,6 +209,11 @@ iframe {
   </div>
 </div>
 <script>
+  function wbLoaded() {
+    var wbFrame = document.getElementById("wbframe");
+    var menu = wbFrame.contentWindow.document.getElementById("menu");
+    menu.style.display = "none";
+  }
   function loadWhiteboard() {
     var wbFrame = document.getElementById("wbframe");
     if (!wbFrame.hasAttribute("src")) {
@@ -219,8 +224,7 @@ iframe {
       var url = "https://draw.coggeshall.io/boards/public#0,0," + scaleFactor.toString();
       wbFrame.setAttribute("src", url);
     }
-    var menu = wbFrame.contentWindow.document.getElementById("menu");
-    menu.style.display = "none";
+    wbFrame.addEventListener("load", wbLoaded, {once: true});
   }
   loadWhiteboard();
 </script>
