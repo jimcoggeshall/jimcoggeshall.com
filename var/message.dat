@@ -215,7 +215,7 @@ iframe {
       var width = window.innerWidth;
       var height = window.innerHeight;
       var minDimension = Math.min(width, height);
-      var scaleFactor = Math.max(Math.min(minDimension/500, 3.0), 0.2);
+      var scaleFactor = Math.max(Math.min(minDimension/2000, 1.0), 0.2);
       var url = "https://draw.coggeshall.io/boards/public#0,0," + scaleFactor.toString();
       wbFrame.setAttribute("src", url);
     }
