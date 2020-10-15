@@ -192,7 +192,7 @@
     var pagesSrc = pagesOrig.slice(0, -1);
     var pages = pagesSrc.map((source) => {
       var image = new Image();
-      imageDiv.classList.add("center");
+      image.classList.add("center");
       return {
         "source": source,
         "image": image
@@ -221,9 +221,11 @@
       document.getElementById("overlay").style.display = "none";
       var imageDiv = document.getElementById("im");
       if (totalVerticalScroll() === 0) {
-        imageDiv.classList.remove("center");
-        imageDiv.classList.add("vcenter");
-      }      
+        Array.from(imageDiv.children).forEach((e, i) => {
+          e.classList.remove("center");
+          e.classList.add("vcenter");
+        });
+      }
     }
 
     function newPage() {
@@ -234,8 +236,8 @@
       document.getElementById("overlay").style.display = "inline-block";
       var newImage = pages[0].image;
       var newImageSrc = pages[0].source;
-      imageDiv.classList.remove("vcenter");
-      imageDiv.classList.add("center");
+      newImage.classList.remove("vcenter");
+      newImage.classList.add("center");
       newImage.addEventListener("load", newPageLoaded, {once: true});
       if (newImage.src !== newImageSrc) {
         newImage.src = newImageSrc;
