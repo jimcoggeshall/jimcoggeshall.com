@@ -2,7 +2,6 @@ jimcoggeshall.com {
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         +Content-Security-Policy "default-src * wss: blob: data: 'unsafe-inline' 'unsafe-eval'"
-        +Content-Security-Policy "frame-src 'self' draw.coggeshall.io"
         -Server
     }
     route {
@@ -24,7 +23,6 @@ broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         +Content-Security-Policy "default-src * wss: blob: data: 'unsafe-inline' 'unsafe-eval'"
-        +Content-Security-Policy "frame-src 'self' draw.coggeshall.io"
         -Server
     }
     route /draw/* {
@@ -42,3 +40,10 @@ broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
     }
 }
 
+draw.jimcoggeshall.com {
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        -Server
+    }
+    redir https://broadcast.jimcoggeshall.com/draw/boards/{file}
+}
