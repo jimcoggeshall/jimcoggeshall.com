@@ -166,7 +166,7 @@ iframe {
 }
 .grid-item {
   padding: 0;
-  margin: 2px;
+  margin: 2vmin;
   border: 1px solid white;
 }
 .outer {
