@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker-compose down
-yes | docker system prune -a --remove-orphans
+docker-compose down --remove-orphans
+yes | docker system prune -a 
 docker-compose up --build -d
 ./message.sh
