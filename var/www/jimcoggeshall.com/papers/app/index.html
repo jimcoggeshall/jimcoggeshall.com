@@ -338,7 +338,6 @@
         var touchobj = e.changedTouches[0];
         navdir = "None";
         swipedir = "None";
-        dist = 0;
         startX = touchobj.pageX;
         startY = touchobj.pageY;
         startYOffset = window.pageYOffset;
@@ -395,14 +394,15 @@
       e.preventDefault();
     }
 
-    window.addEventListener("scroll", (e) => {
+    function hideIcons() {
+      clearTimeout(navTimeout);
       document.getElementById("topLeft").style.display = "none";
       document.getElementById("topLeftIcon").style.display = "none";
       document.getElementById("left").style.display = "none";
       document.getElementById("leftArrow").style.display = "none";
       document.getElementById("right").style.display = "none";
       document.getElementById("rightArrow").style.display = "none";
-    });
+    }
 
     detectSwipe((swipedir) => {
       switch (swipedir) {
@@ -431,6 +431,8 @@
     
     window.addEventListener("mousemove", handleTap);
     window.addEventListener("resize", newPage);
+    window.addEventListener("wheel", hideIcons);
+    window.addEventListener("scroll", hideIcons);
 
   </script>
 
