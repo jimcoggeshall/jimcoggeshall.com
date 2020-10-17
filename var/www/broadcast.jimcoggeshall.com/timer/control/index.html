@@ -13,6 +13,16 @@
       * {
         font-size: max(2vw, 1.5vh);
       }
+      body {
+        background-color: white;
+        color: black;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: black;
+          color: white;
+        }
+      }
       @media screen and (max-width: 768px) {
         * {
           font-size: 2vmax;
