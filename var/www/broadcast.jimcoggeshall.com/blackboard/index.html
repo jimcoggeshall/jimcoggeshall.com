@@ -59,9 +59,17 @@
   <script>
     function loadBlackboard() {
       var bbFrame = document.getElementById("blackboard");
-      var currentUrl = window.location.href;
-      var pathname = currentUrl.pathname.replace("/blackboard", "");
-      var url = pathname + currentUrl.hash;
+      var currentSearchParams = (new URL(document.location)).searchParams;
+      var boardName = "public";
+      if (currentSearchParams.has("boardname")) {
+        boardName = currentSearchParams.get("boardname");
+      }
+      var pathname = "/draw/boards/" + boardName;
+      if (currentSearchParams.has("hash")) {
+        var hashString = currentSearchParams.get("hash");
+        pathname += "#" + hashString;
+      }
+      var url = pathname;
       bbFrame.setAttribute("src", url);
     }
     loadBlackboard();
