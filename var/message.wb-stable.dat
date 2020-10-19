@@ -63,13 +63,13 @@ iframe {
   grid-row-start: 2; 
   grid-row-end: 3;
 }
-.grid-whiteboard {
+.grid-blackboard {
   grid-column-start: 3; 
   grid-column-end: 4; 
   grid-row-start: 1; 
   grid-row-end: 3;
   overflow: hidden;
-  background-color: #FFFFFF;
+  background-color: #000000;
 }
 @media screen and (max-aspect-ratio: 13/12) {
   .display-grid {
@@ -104,13 +104,13 @@ iframe {
     grid-row-start: 2; 
     grid-row-end: 3;
   }
-  .grid-whiteboard {
+  .grid-blackboard {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 4;
     overflow: hidden;
-    background-color: #FFFFFF;
+    background-color: #000000;
   }
 }
 @media screen and (max-aspect-ratio: 2/3) {
@@ -155,13 +155,13 @@ iframe {
     grid-row-start: 3; 
     grid-row-end: 4;
   }
-  .grid-whiteboard {
+  .grid-blackboard {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 4;
     grid-row-end: 5;
     overflow: hidden;
-    background-color: #FFFFFF;
+    background-color: #000000;
   }
 }
 .grid-item {
@@ -202,29 +202,29 @@ iframe {
       <div class="grid-item grid-timer">
         <iframe class="typeset-frame" src="/timer" allow="autoplay" /></iframe>
       </div>
-      <div class="grid-item grid-whiteboard">
-        <iframe id="wbframe" /></iframe>
+      <div class="grid-item grid-blackboard">
+        <iframe id="bbframe" /></iframe>
       </div>
     </div>
   </div>
 </div>
 <script>
-  function wbLoaded() {
-    var wbFrame = document.getElementById("wbframe");
-    var menu = wbFrame.contentWindow.document.getElementById("menu");
+  function bbLoaded() {
+    var bbFrame = document.getElementById("bbframe");
+    var menu = bbFrame.contentWindow.document.getElementById("menu");
     menu.style.display = "none";
   }
-  function loadWhiteboard() {
-    var wbFrame = document.getElementById("wbframe");
-    if (!wbFrame.hasAttribute("src")) {
+  function loadBlackboard() {
+    var bbFrame = document.getElementById("bbframe");
+    if (!bbFrame.hasAttribute("src")) {
       var width = window.innerWidth;
       var height = window.innerHeight;
       var minDimension = Math.min(width, height);
       var scaleFactor = Math.max(Math.min(minDimension/2000, 1.0), 0.2);
       var url = "/draw/boards/public#0,0," + scaleFactor.toString();
-      wbFrame.setAttribute("src", url);
+      bbFrame.setAttribute("src", url);
     }
-    wbFrame.addEventListener("load", wbLoaded, {once: true});
+    bbFrame.addEventListener("load", bbLoaded, {once: true});
   }
-  loadWhiteboard();
+  loadBlackboard();
 </script>
