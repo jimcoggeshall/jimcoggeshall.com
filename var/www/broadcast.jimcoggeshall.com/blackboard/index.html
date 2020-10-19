@@ -61,7 +61,8 @@
     function loadBlackboard() {
       var bbFrame = document.getElementById("blackboard");
       var currentUrl = window.location.href;
-      var url = currentUrl.pathname + currentUrl.hash;
+      var pathname = currentUrl.pathname.replace("/blackboard", "");
+      var url = pathname + currentUrl.hash;
       bbFrame.setAttribute("src", url);
     }
     loadBlackboard();
