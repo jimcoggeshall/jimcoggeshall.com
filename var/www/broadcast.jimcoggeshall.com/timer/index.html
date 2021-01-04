@@ -158,7 +158,7 @@
           if (chime.paused) {
             chime.addEventListener("ended", () => {
               if (timerMessage) {
-                let minutesLeft = (secondsLeft/60).toString()
+                let minutesLeft = (Math.floor(secondsLeft/60)).toString()
                 let speech = new SpeechSynthesisUtterance();
                 let voice = speechSynthesis.getVoices()[0];
                 speech.voice = voice;
@@ -179,7 +179,7 @@
           if (bell.paused) {
             bell.addEventListener("ended", () => {
               if (timerMessage) {
-                let minutesLeft = (secondsLeft/60).toString()
+                let minutesLeft = (Math.floor(secondsLeft/60)).toString()
                 let speech = new SpeechSynthesisUtterance();
                 let voice = speechSynthesis.getVoices()[0];
                 speech.voice = voice;
