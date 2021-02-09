@@ -81,4 +81,4 @@ services:
         ports:
             - "8080:8080"
         volumes:
-            - /opt/app/server-data:/opt/app/server-data
+            - /opt/apps/wbo/server-data:/opt/app/server-data
