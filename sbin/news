@@ -28,7 +28,8 @@ class Messenger:
         select = True
 
         title = e.get("title", "")
-        if any([s in title for s in filter_strings_title]):
+        title_lower = title.lower()
+        if any([s in title_lower for s in filter_strings_title]):
             select = False
 
         author = e.get("author", "")
