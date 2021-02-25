@@ -12,7 +12,7 @@ import json
 
 class Messenger:
 
-    def _select_entry(e):
+    def _select_entry(self, e):
 
         filter_strings_title = {
             "kill",
