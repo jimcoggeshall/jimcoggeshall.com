@@ -12,6 +12,35 @@ import json
 
 class Messenger:
 
+    def _select_entry(e):
+
+        filter_strings_title = {
+            "kill",
+            "dead",
+            "die",
+            "murder",
+            "drug",
+            "death",
+            "stab",
+            "attack"
+        }
+
+        select = True
+
+        title = e.get("title", "")
+        if any([s in title for s in filter_strings_title]):
+            select = False
+
+        author = e.get("author", "")
+        if author == "The New York Times":
+            select = False
+
+        if len(e["description"]) <= 20:
+            select = False
+
+        return select
+
+
     def _update_messages(self):
         self._feeds = [
             feedparser.parse(u) for u in self._feed_urls
@@ -20,7 +49,7 @@ class Messenger:
         messages = []
         for feed in self._feeds:
             for e in feed["entries"]:
-                if e.get("author", "") != "The New York Times" and len(e["description"]) > 20:
+                if self._select_entry(e):
                     messages.append(
                         json.dumps( 
                             {"Title": e["title"], "Description": e["description"]},
