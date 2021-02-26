@@ -23,7 +23,11 @@ class Messenger:
             "death",
             "stab",
             "attack",
-            "accident"
+            "accident",
+            "discount",
+            "sale",
+            "percent off",
+            "% off"
         }
 
         select = True
