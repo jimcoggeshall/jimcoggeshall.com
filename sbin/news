@@ -22,7 +22,8 @@ class Messenger:
             "drug",
             "death",
             "stab",
-            "attack"
+            "attack",
+            "accident"
         }
 
         select = True
