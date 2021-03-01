@@ -230,4 +230,9 @@ iframe {
     bbFrame.addEventListener("load", bbLoaded, {once: true});
   }
   loadBlackboard();
+  setTimeout(() => {
+    var bbFrame = document.getElementById("bbframe");
+    bbFrame.contentDocument.location.reload(true);
+    loadBlackboard();
+  }, 300000);
 </script>
