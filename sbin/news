@@ -24,6 +24,7 @@ class Messenger:
             "body",
             "bodies",
             "corpse",
+            "fatal",
             "stab",
             "attack",
             "accident",
