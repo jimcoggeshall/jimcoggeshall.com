@@ -106,7 +106,7 @@ What do vegetarian zombies eat?	Grrrrrainnnnnssss!
 What do you call a bear with no teeth?	A gummy bear!
 What do you call a bee that lives in America?	A USB.
 What do you call a boomerang that won't come back?	A stick.
-What do you call a careful wolf?	Aware wolf.
+What do you call a careful wolf?	Aware wolf!
 What do you call a cow on a trampoline?	A milk shake!
 What do you call a cow with no legs?	Ground beef.
 What do you call a cow with two legs?	Lean beef.
@@ -115,35 +115,35 @@ What do you call a dad who has fallen through the ice?	A Popsicle.
 What do you call a dictionary on drugs?	High definition.
 What do you call a dog that can do magic tricks?	A labracadabrador!
 What do you call a droid that takes the long way around?	R2 detour.
-What do you call a duck that gets straight As?	A wise quacker.
-What do you call a fake noodle?	An impasta.
+What do you call a duck that gets straight As?	A wise quacker!
+What do you call a fake noodle?	An impasta!
 What do you call a fashionable lawn statue with an excellent sense of rhythm?	A metro-gnome!
-What do you call a fat psychic?	A four-chin teller.
-What do you call a fly without wings?	A walk.
-What do you call a girl between two posts?	Annette.
+What do you call a fat psychic?	A four-chin teller!
+What do you call a fly without wings?	A walk!
+What do you call a girl between two posts?	Annette!
 What do you call a gorilla wearing headphones?	Anything you'd like; it can't hear you.
-What do you call a group of disorganized cats?	A cat-astrophe.
-What do you call a group of killer whales playing instruments?	An Orca-stra.
-What do you call a guy lying on your doorstep?	Matt.
+What do you call a group of disorganized cats?	A cat-astrophe!
+What do you call a group of killer whales playing instruments?	An Orca-stra!
+What do you call a guy lying on your doorstep?	Matt!
 What do you call a monkey in a mine field?	A babooooom!
 What do you call an alligator in a vest?	An in-vest-igator!
 What do you call an Argentinian with a rubber toe?	Roberto!
 What do you call an eagle who can play the piano?	Talonted!
-What do you call an elephant that doesn't matter?	An irrelephant.
-What do you call a nervous javelin thrower?	Shakespeare.
-What do you call an old snowman?	Water.
+What do you call an elephant that doesn't matter?	An irrelephant!
+What do you call a nervous javelin thrower?	Shakespeare!
+What do you call an old snowman?	Water!
 What do you call a pig that knows karate?	A pork chop!
 What do you call a pig with three eyes?	Piiig!
 What do you call a pile of cats?	A Meowntain!
-What do you call a sheep with no legs?	A cloud.
+What do you call a sheep with no legs?	A cloud!
 What do you call a troublesome Canadian high schooler?	A poutine.
-What do you call cheese by itself?	Provolone.
-What do you call corn that joins the army?	Kernel.
+What do you call cheese by itself?	Provolone!
+What do you call corn that joins the army?	Kernel!
 What do you call someone with no nose?	Nobody nose!
 What do you call two barracuda fish?	A pairacuda!
-What do you do on a remote island?	Try to find the TV island it belongs to.
-What do you do when your bunny gets wet?	You get your hare dryer.
-What do you get hanging from apple trees?	Sore arms.
+What do you do on a remote island?	Try to find the TV island it belongs to!
+What do you do when your bunny gets wet?	You get your hare dryer!
+What do you get hanging from apple trees?	Sore arms!
 What do you get if you put a duck in a cement mixer?	Quacks in the pavement.
 What do you get when you cross a bee and a sheep?	A bah-humbug.
 What do you get when you cross a chicken with a skunk?	A fowl smell!
@@ -294,6 +294,6 @@ Why is it against the rules to stay up too late?	Because it's illegal to resist 
 "Dad, can you tell me what a solar eclipse is?"	"No sun."
 What is a ghost's favorite fruit?	Boo-berries!
 What do you do with a dead chemist?	Barium!
-Why did the dog get arrested?   He had unpaid barking tickets.
-What do you call a monkey with a zebra?   A chimp-and-zee!
-What do you call a lost wolf?   A where wolf!
+Why did the dog get arrested?	He had unpaid barking tickets.
+What do you call a monkey with a zebra?	A chimp-and-zee!
+What do you call a lost wolf?	A where wolf!
