@@ -285,11 +285,11 @@
         default:
           break;
       }
+      recentKeystroke = true;
       clearTimeout(keystrokeTimeout);
       keystrokeTimeout = setTimeout(() => {
         recentKeystroke = false;
-      }, 3000);
-      recentKeystroke = true;
+      }, 1000);
       e.preventDefault();
     }
 
@@ -383,23 +383,23 @@
     }
 
     function handleTap(e) {
+      clearTimeout(navTimeout);
       if (!recentKeystoke) {
-        clearTimeout(navTimeout);
         document.getElementById("topLeft").style.display = "block";
         document.getElementById("topLeftIcon").style.display = "block";
         document.getElementById("left").style.display = "block";
         document.getElementById("leftArrow").style.display = "block";
         document.getElementById("right").style.display = "block";
         document.getElementById("rightArrow").style.display = "block";
-        navTimeout = setTimeout(() => {
-          document.getElementById("topLeft").style.display = "none";
-          document.getElementById("topLeftIcon").style.display = "none";
-          document.getElementById("left").style.display = "none";
-          document.getElementById("leftArrow").style.display = "none";
-          document.getElementById("right").style.display = "none";
-          document.getElementById("rightArrow").style.display = "none";
-        }, 2000);
       }
+      navTimeout = setTimeout(() => {
+        document.getElementById("topLeft").style.display = "none";
+        document.getElementById("topLeftIcon").style.display = "none";
+        document.getElementById("left").style.display = "none";
+        document.getElementById("leftArrow").style.display = "none";
+        document.getElementById("right").style.display = "none";
+        document.getElementById("rightArrow").style.display = "none";
+      }, 2000);
       e.preventDefault();
     }
 
