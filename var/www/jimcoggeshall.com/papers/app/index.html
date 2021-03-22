@@ -189,6 +189,8 @@
 
     const referrer = document.referrer;
     var navTimeout;
+    var keystrokeTimeout;
+    var recentKeystroke = false;
     var pagesSrc = pagesOrig.slice(0, -1);
     var pages = pagesSrc.map((source) => {
       var image = new Image();
@@ -283,6 +285,11 @@
         default:
           break;
       }
+      clearTimeout(keystrokeTimeout);
+      keystrokeTimeout = setTimeout(() => {
+        recentKeystroke = false;
+      }, 3000);
+      recentKeystroke = true;
       e.preventDefault();
     }
 
@@ -376,21 +383,23 @@
     }
 
     function handleTap(e) {
-      clearTimeout(navTimeout);
-      document.getElementById("topLeft").style.display = "block";
-      document.getElementById("topLeftIcon").style.display = "block";
-      document.getElementById("left").style.display = "block";
-      document.getElementById("leftArrow").style.display = "block";
-      document.getElementById("right").style.display = "block";
-      document.getElementById("rightArrow").style.display = "block";
-      navTimeout = setTimeout(() => {
-        document.getElementById("topLeft").style.display = "none";
-        document.getElementById("topLeftIcon").style.display = "none";
-        document.getElementById("left").style.display = "none";
-        document.getElementById("leftArrow").style.display = "none";
-        document.getElementById("right").style.display = "none";
-        document.getElementById("rightArrow").style.display = "none";
-      }, 2000);
+      if (!recentKeystoke) {
+        clearTimeout(navTimeout);
+        document.getElementById("topLeft").style.display = "block";
+        document.getElementById("topLeftIcon").style.display = "block";
+        document.getElementById("left").style.display = "block";
+        document.getElementById("leftArrow").style.display = "block";
+        document.getElementById("right").style.display = "block";
+        document.getElementById("rightArrow").style.display = "block";
+        navTimeout = setTimeout(() => {
+          document.getElementById("topLeft").style.display = "none";
+          document.getElementById("topLeftIcon").style.display = "none";
+          document.getElementById("left").style.display = "none";
+          document.getElementById("leftArrow").style.display = "none";
+          document.getElementById("right").style.display = "none";
+          document.getElementById("rightArrow").style.display = "none";
+        }, 2000);
+      }
       e.preventDefault();
     }
 
