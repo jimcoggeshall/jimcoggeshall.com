@@ -89,7 +89,7 @@
 
   <script>
     var ws;
-    var warningBellsEnabled = false;
+    var warningBellsEnabled = true;
     var timerMessage = "";
     var recentMessageData = {
       action: "noop"
@@ -154,7 +154,7 @@
       countdown = setInterval(() => {
         secondsLeft = Math.round((endTimeInSeconds*1000 - Date.now())/1000);
 
-        if (warningBellsEnabled && (secondsLeft === 600 || secondsLeft === 1800)) {
+        if (warningBellsEnabled && (secondsLeft === 600)) {
           if (chime.paused) {
             chime.addEventListener("ended", () => {
               if (timerMessage) {
