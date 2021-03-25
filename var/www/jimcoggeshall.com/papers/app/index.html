@@ -189,8 +189,6 @@
 
     const referrer = document.referrer;
     var navTimeout;
-    var keystrokeTimeout;
-    var recentKeystroke = false;
     var pagesSrc = pagesOrig.slice(0, -1);
     var pages = pagesSrc.map((source) => {
       var image = new Image();
@@ -285,11 +283,6 @@
         default:
           break;
       }
-      recentKeystroke = true;
-      clearTimeout(keystrokeTimeout);
-      keystrokeTimeout = setTimeout(() => {
-        recentKeystroke = false;
-      }, 1000);
       e.preventDefault();
     }
 
@@ -384,14 +377,12 @@
 
     function handleTap(e) {
       clearTimeout(navTimeout);
-      if (!recentKeystoke) {
-        document.getElementById("topLeft").style.display = "block";
-        document.getElementById("topLeftIcon").style.display = "block";
-        document.getElementById("left").style.display = "block";
-        document.getElementById("leftArrow").style.display = "block";
-        document.getElementById("right").style.display = "block";
-        document.getElementById("rightArrow").style.display = "block";
-      }
+      document.getElementById("topLeft").style.display = "block";
+      document.getElementById("topLeftIcon").style.display = "block";
+      document.getElementById("left").style.display = "block";
+      document.getElementById("leftArrow").style.display = "block";
+      document.getElementById("right").style.display = "block";
+      document.getElementById("rightArrow").style.display = "block";
       navTimeout = setTimeout(() => {
         document.getElementById("topLeft").style.display = "none";
         document.getElementById("topLeftIcon").style.display = "none";
