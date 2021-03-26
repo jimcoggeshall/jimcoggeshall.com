@@ -31,7 +31,8 @@ class Messenger:
             "discount",
             "sale",
             "percent off",
-            "% off"
+            "% off",
+            "sex"
         }
 
         select = True
@@ -46,6 +47,9 @@ class Messenger:
             select = False
 
         if len(e["description"]) <= 20:
+            select = False
+            
+        if len(e["description"]) < len(e["title"]):
             select = False
 
         return select
