@@ -32,7 +32,8 @@ class Messenger:
             "sale",
             "percent off",
             "% off",
-            "sex"
+            "sex",
+            "shot"
         }
 
         select = True
