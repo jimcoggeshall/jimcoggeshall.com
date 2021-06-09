@@ -79,6 +79,6 @@ services:
         image: wexec-whiteboard:latest
         build: https://github.com/lovasoa/whitebophir.git
         ports:
-            - "8080:8080"
+            - "8080:80"
         volumes:
             - /opt/apps/wbo/server-data:/opt/app/server-data
