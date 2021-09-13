@@ -5,7 +5,7 @@ set -x
 sleep 60 
 
 #(for doc in TodaysPaper dp wsj sdut lat; do
-(for doc in TodaysPaper wsj sdut lat; do
+(for doc in TodaysPaper wsj sdut; do
     pushd /
     rm -f ${doc}.pdf
     #wget -N https://cloud.jimcoggeshall.com/${doc}.pdf
