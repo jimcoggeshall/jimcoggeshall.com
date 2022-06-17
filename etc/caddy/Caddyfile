@@ -31,5 +31,5 @@ http://broadcast.jim.coggeshall.io, http://display.jim.coggeshall.io {
 }
 
 http://draw.jim.coggeshall.io {
-    redir https://broadcast.jim.coggeshall.io/draw/boards/{file}
+    redir http://broadcast.jim.coggeshall.io/draw/boards/{file}
 }
