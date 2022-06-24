@@ -33,3 +33,13 @@ http://broadcast.jim.coggeshall.io, http://display.jim.coggeshall.io {
 http://draw.jim.coggeshall.io {
     redir http://broadcast.jim.coggeshall.io/draw/boards/{file}
 }
+
+http://cloud.jim.coggeshall.io {
+    route {
+        file_server {
+            root /var/www/cloud.jimcoggeshall.com
+            browse
+        }
+    }
+}
+
