@@ -1,3 +1,10 @@
-FROM caddy:latest
+ROM caddy:builder AS builder
+
+RUN xcaddy build
+
+FROM caddy:alpine
+
 ENV XDG_DATA_HOME /var/data
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+
 CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
