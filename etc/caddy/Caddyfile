@@ -2,7 +2,7 @@
     auto_https off
 }
 
-http://jim.coggeshall.io {
+http://jimcoggeshall.com, http://jim.coggeshall.io {
     route {
         file_server {
             root /var/www/jimcoggeshall.com
@@ -10,11 +10,11 @@ http://jim.coggeshall.io {
     }
 }
 
-http://www.jim.coggeshall.io {
+http://www.jimcoggeshall.com, http://www.jim.coggeshall.io {
     redir http://jim.coggeshall.io{uri} permanent
 }
 
-http://broadcast.jim.coggeshall.io, http://display.jim.coggeshall.io {
+http://broadcast.jimcoggeshall.com, http://display.jimcoggeshall.com, http://broadcast.jim.coggeshall.io, http://display.jim.coggeshall.io {
     route /draw/* {
         uri strip_prefix /draw
         reverse_proxy localhost:8080
@@ -30,7 +30,7 @@ http://broadcast.jim.coggeshall.io, http://display.jim.coggeshall.io {
     }
 }
 
-http://cloud.jim.coggeshall.io {
+http://cloud.jimcoggeshall.com, http://cloud.jim.coggeshall.io {
     route {
         file_server {
             root /var/www/cloud.jimcoggeshall.com
