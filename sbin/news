@@ -33,7 +33,9 @@ class Messenger:
             "percent off",
             "% off",
             "sex",
-            "shot"
+            "shot",
+            "abort",
+            "reproductive"
         }
 
         select = True
