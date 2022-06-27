@@ -1,11 +1,8 @@
-jimcoggeshall.com {
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        Content-Security-Policy "default-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self'"
-        X-Content-Type-Options "nosniff"
-        X-Frame-Options "SAMEORIGIN"
-        -Server
-    }
+{
+    auto_https off
+}
+
+http://jimcoggeshall.com, http://jim.coggeshall.io {
     route {
         file_server {
             root /var/www/jimcoggeshall.com
@@ -13,20 +10,11 @@ jimcoggeshall.com {
     }
 }
 
-www.jimcoggeshall.com {
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        -Server
-    }
-    redir https://jimcoggeshall.com{uri} permanent
+http://www.jimcoggeshall.com, http://www.jim.coggeshall.io {
+    redir http://jim.coggeshall.io{uri} permanent
 }
 
-broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        +Content-Security-Policy "default-src * wss: blob: data: 'unsafe-inline' 'unsafe-eval'"
-        -Server
-    }
+http://broadcast.jimcoggeshall.com, http://display.jimcoggeshall.com, http://broadcast.jim.coggeshall.io, http://display.jim.coggeshall.io {
     route /draw/* {
         uri strip_prefix /draw
         reverse_proxy localhost:8080
@@ -42,10 +30,12 @@ broadcast.jimcoggeshall.com, display.jimcoggeshall.com {
     }
 }
 
-draw.jimcoggeshall.com {
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        -Server
+http://cloud.jimcoggeshall.com, http://cloud.jim.coggeshall.io {
+    route {
+        file_server {
+            root /var/www/cloud.jimcoggeshall.com
+            browse
+        }
     }
-    redir https://broadcast.jimcoggeshall.com/draw/boards/{file}
 }
+
