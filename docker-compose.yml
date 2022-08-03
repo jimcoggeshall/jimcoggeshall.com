@@ -59,17 +59,3 @@ services:
             - type: bind
               source: ./var/broadcast
               target: /var/broadcast
-
-    svc-paper:
-        restart: unless-stopped
-        image: wexec-paper:latest
-        build:
-            context: .
-            dockerfile: Dockerfile.paper
-        network_mode: host
-        volumes: 
-            - type: bind
-              source: ./var/www/jimcoggeshall.com
-              target: /var/www/jimcoggeshall.com
-              bind:
-                  propagation: rshared
