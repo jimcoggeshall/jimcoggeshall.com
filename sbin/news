@@ -13,6 +13,9 @@ import json
 class Messenger:
 
     def _select_entry(self, e):
+    
+        if "title" not in e or "description" not in e:
+            return False
 
         filter_strings_title = {
             "kill",
